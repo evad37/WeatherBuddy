@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherBuddy.LocationsPage">
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
+                <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False"/> <!-- Only shown for horizontal orientation -->
+                <Label Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                <Button x:Name="HorizontalViewNewLocationButton" Text="New location" HorizontalOptions="End" IsVisible="False"/> <!-- Only shown for horizontal orientation -->
+            </StackLayout>
+        </Frame>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4"> <!-- Only shown for vertical orientation -->
+            <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start"/>
+            <Button x:Name="VerticalViewNewLocationButton" Text="New location" HorizontalOptions="EndAndExpand"/>
+        </StackLayout>
+        <Label Text="Tap a loction for edit options" Margin="4"/>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout>
+                <!-- Locations (will be added programmatically) -->
+                <Frame BorderColor="Beige">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand"> <!-- oreintation will change based on device orientation -->
+                            <Label Text="Location1Name" FontAttributes="Bold"/>
+                            <Label Text="Sunny"/>
+                        </StackLayout>
+                        <Label Text="00°C" HorizontalOptions="End"/>
+                        <!-- TODO: Button to set/unset as favourite -->
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="Beige">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                            <Label Text="Location2Name" FontAttributes="Bold"/>
+                            <Label Text="Cloudy"/>
+                        </StackLayout>
+                        <Label Text="00°C" HorizontalOptions="End"/>
+                        <!-- TODO: Button to set/unset as favourite -->
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="Beige">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                            <Label Text="Location3Name" FontAttributes="Bold"/>
+                            <Label Text="Raining"/>
+                        </StackLayout>
+                        <Label Text="00°C" HorizontalOptions="End"/>
+                        <!-- TODO: Button to set/unset as favourite -->
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="Beige">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                            <Label Text="Location4Name" FontAttributes="Bold"/>
+                            <Label Text="Sunny"/>
+                        </StackLayout>
+                        <Label Text="00°C" HorizontalOptions="End"/>
+                        <!-- TODO: Button to set/unset as favourite -->
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="Beige">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                            <Label Text="Location5Name" FontAttributes="Bold"/>
+                            <Label Text="Storms"/>
+                        </StackLayout>
+                        <Label Text="00°C" HorizontalOptions="End"/>
+                        <!-- TODO: Button to set/unset as favourite -->
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="4,4,4,10">
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
