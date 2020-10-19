@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherBuddy.AddLocationPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
+                    <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False"/> <!-- Only shown for horizontal orientation -->
+                    <Label Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                </StackLayout>
+            </Frame>
+           
+            <!-- Only shown for vertical orientation -->
+            <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Margin="10,4"/>
+            <Label Text="Filter" Margin="10,4,0,0"/>
+            <Entry Placeholder="Enter location" Margin="10,0,0,4"/>
+            <ScrollView>
+                <StackLayout x:Name="FilterResultsStackLayout" Orientation="Vertical">
+                    <Frame BorderColor="Beige">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BorderColor="Beige">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BorderColor="Beige">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BorderColor="Beige">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame BorderColor="Beige">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
