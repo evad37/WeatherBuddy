@@ -4,21 +4,52 @@
              x:Class="WeatherBuddy.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        <Frame BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
+            <Label Text="WeatherBuddy!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="4,4,4,10">
+            <Button x:Name="LocationsButton" Text="My Locations" HorizontalOptions="FillAndExpand"/>
+            <Button x:Name="PreferencesButton" Text="Preferences" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+
+                <!-- Main location -->
+                <Frame BorderColor="Beige">
+                    <StackLayout x:Name="MainLocationStackLayout" Orientation="Vertical" Padding="0" Spacing="0" Margin="10,0,10,0">
+                        <!-- oreintation will change based on device orientation -->
+                        <Label x:Name="MainLocationNameLabel" Text="Main Location Name" VerticalOptions="Center" FontSize="18" Margin="0" Padding="0"/>
+                        <Label x:Name="MainLocationTempLabel" Text="00°C" FontSize="80" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="0" Padding="0"/>
+                        <Label x:Name="MainLocationDescriptionLabel" Text="Mostly sunny" FontSize="16" VerticalOptions="Center" HorizontalOptions="Center" Margin="0" Padding="0"/>
+                    </StackLayout>
+                </Frame>
+                <!-- Favourite locations (will be added programmatically) -->
+                <Frame BorderColor="Beige">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Location1Name" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="00°C" HorizontalOptions="End"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="Beige">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Location2Name" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="00°C" HorizontalOptions="End"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="Beige">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Location3Name" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="00°C" HorizontalOptions="End"/>
+                    </StackLayout>
+                </Frame>
+                <Frame BorderColor="Beige">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Location4Name" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="00°C" HorizontalOptions="End"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </StackLayout>
 
 </ContentPage>
