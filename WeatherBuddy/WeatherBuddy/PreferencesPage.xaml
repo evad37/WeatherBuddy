@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherBuddy.PreferencesPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
+                    <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False"/>
+                    <!-- Only shown for horizontal orientation -->
+                    <Label Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                    <Button x:Name="HorizontalViewResetButton" Text="Reset" HorizontalOptions="End" IsVisible="False"/>
+                    <!-- Only shown for horizontal orientation -->
+                </StackLayout>
+            </Frame>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4">
+                <!-- Only shown for vertical orientation -->
+                <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start"/>
+                <Button x:Name="VerticalViewResetButton" Text="Reset" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+            <ScrollView>
+                <Grid Margin="10,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame BorderColor="Beige" Grid.Row="0" Grid.ColumnSpan="3"/>
+                    <Frame BorderColor="Beige" Grid.Row="1" Grid.ColumnSpan="3"/>
+                    <Frame BorderColor="Beige" Grid.Row="2" Grid.ColumnSpan="3"/>
+                
+                    <Label Text="Units"  VerticalOptions="Center"/>
+                    <StackLayout Grid.Column="1" Orientation="Horizontal">
+                        <RadioButton />
+                        <Label Text="Celcius" VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="2" Orientation="Horizontal">
+                        <RadioButton />
+                        <Label Text="Fahrenheit" VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <Label Grid.Row="1" Text="Dark mode"  VerticalOptions="Center"/>
+                    <Switch Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  />
+                
+                    <Label Grid.Row="2" Text="Theme"  VerticalOptions="Center"/>
+                    <Picker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" x:Name="ThemePicker">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Sky (default)</x:String>
+                                <x:String>Grass</x:String>
+                                <x:String>Sun</x:String>
+                                <x:String>Moon</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
