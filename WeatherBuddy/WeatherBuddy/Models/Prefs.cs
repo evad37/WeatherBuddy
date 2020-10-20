@@ -11,6 +11,11 @@ namespace WeatherBuddy.Models
         public bool darkMode { get; set; } = false;
         public string theme { get; set; } = "Sky";
 
+        public Prefs()
+        {
+            LoadPreferences();
+        }
+
         public void SavePreferences()
         {
             Preferences.Set(nameof(unit), unit);
