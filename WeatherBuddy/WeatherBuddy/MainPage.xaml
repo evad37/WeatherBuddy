@@ -8,8 +8,8 @@
             <Label Text="WeatherBuddy!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="4,4,4,10">
-            <Button x:Name="LocationsButton" Text="My Locations" HorizontalOptions="FillAndExpand"/>
-            <Button x:Name="PreferencesButton" Text="Preferences" HorizontalOptions="FillAndExpand"/>
+            <Button x:Name="LocationsButton" Text="My Locations" HorizontalOptions="FillAndExpand" Clicked="LocationsButton_Clicked"/>
+            <Button x:Name="PreferencesButton" Text="Preferences" HorizontalOptions="FillAndExpand" Clicked="PreferencesButton_Clicked"/>
         </StackLayout>
         <ScrollView>
             <StackLayout>
