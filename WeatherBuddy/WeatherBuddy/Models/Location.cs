@@ -10,12 +10,12 @@ namespace WeatherBuddy.Models
 {
     class Location
     {
-        int id;
-        string name;
-        string state;
-        string country;
-        double tempNow;
-        string conditions;
+        public int id { get; set; }
+        public string name { get; set; }
+        public string state { get; set; }
+        public string country { get; set; }
+        public double tempNow { get; private set; }
+        public string conditions { get; private set; }
         /// <summary>
         /// Tuple of error message headring and body
         /// </summary>

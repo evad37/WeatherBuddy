@@ -38,7 +38,7 @@ namespace WeatherBuddy
         private void NewLocationButton_Clicked(object sender, EventArgs e) => OpenAddNewLocationPage();
         private async void OpenAddNewLocationPage()
         {
-            AddLocationPage addLocationPage = new AddLocationPage();
+            AddLocationPage addLocationPage = new AddLocationPage(weatherCollection);
             await Navigation.PushModalAsync(addLocationPage);
         }
     }
