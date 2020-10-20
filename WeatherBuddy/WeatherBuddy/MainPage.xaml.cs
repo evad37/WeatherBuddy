@@ -25,7 +25,7 @@ namespace WeatherBuddy
 
         private async void OpenLocationsPage()
         {
-            LocationsPage locationsPage = new LocationsPage();
+            LocationsPage locationsPage = new LocationsPage(weatherCollection);
             await Navigation.PushModalAsync(locationsPage);
         }
 

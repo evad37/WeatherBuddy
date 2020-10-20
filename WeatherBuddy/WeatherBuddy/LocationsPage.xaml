@@ -5,14 +5,14 @@
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
-                <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False"/> <!-- Only shown for horizontal orientation -->
+                <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/> <!-- Only shown for horizontal orientation -->
                 <Label Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                <Button x:Name="HorizontalViewNewLocationButton" Text="New location" HorizontalOptions="End" IsVisible="False"/> <!-- Only shown for horizontal orientation -->
+                <Button x:Name="HorizontalViewNewLocationButton" Text="New location" HorizontalOptions="End" IsVisible="False" Clicked="NewLocationButton_Clicked"/> <!-- Only shown for horizontal orientation -->
             </StackLayout>
         </Frame>
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4"> <!-- Only shown for vertical orientation -->
-            <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start"/>
-            <Button x:Name="VerticalViewNewLocationButton" Text="New location" HorizontalOptions="EndAndExpand"/>
+            <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Clicked="BackButton_Clicked"/>
+            <Button x:Name="VerticalViewNewLocationButton" Text="New location" HorizontalOptions="EndAndExpand" Clicked="NewLocationButton_Clicked"/>
         </StackLayout>
         <Label Text="Tap a loction for edit options" Margin="4"/>
         <ScrollView VerticalOptions="StartAndExpand">

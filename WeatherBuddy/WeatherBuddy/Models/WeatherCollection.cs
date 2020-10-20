@@ -10,7 +10,7 @@ namespace WeatherBuddy.Models
     /// <summary>
     /// Model for the user's chosen locations and preferences
     /// </summary>
-    class WeatherCollection
+    public class WeatherCollection
     {
         Prefs prefs = new Prefs();
         List<Location> locations = new List<Location>();
