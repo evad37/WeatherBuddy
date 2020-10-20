@@ -52,11 +52,11 @@ namespace WeatherBuddy.Models
         }
 
         /// <summary>
-        /// Fetch rates info for a currency from either cached responses or the the live api 
+        /// Fetches weather data from either the api, or a previously cached response
         /// </summary>
         /// <param name="cityId">City id code</param>
         /// <returns>Weather information as JSON string</returns>
-        public virtual async Task<string> FetchRates(string cityId)
+        public virtual async Task<string> FetchData(string cityId)
         {
             // Return a cached response if available and valid
             string cachedResponse = CachedResponseIfValid(cityId);
