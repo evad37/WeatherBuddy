@@ -12,8 +12,8 @@ namespace WeatherBuddy.Models
     /// </summary>
     public class WeatherCollection
     {
-        Prefs prefs = new Prefs();
-        List<Location> locations = new List<Location>();
+        public Prefs prefs { get; private set; } = new Prefs();
+        public List<Location> locations { get; private set; } = new List<Location>();
         readonly string dataFolderName = "WeatherBuddy";
         readonly string dataFileName = "Locations";
 

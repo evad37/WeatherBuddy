@@ -32,7 +32,7 @@ namespace WeatherBuddy
         private void PreferencesButton_Clicked(object sender, EventArgs e) => OpenPreferencesPage();
         private async void OpenPreferencesPage()
         {
-            PreferencesPage preferencesPage = new PreferencesPage();
+            PreferencesPage preferencesPage = new PreferencesPage(weatherCollection);
             await Navigation.PushModalAsync(preferencesPage);
         }
     }

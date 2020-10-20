@@ -5,7 +5,7 @@ using Xamarin.Essentials;
 
 namespace WeatherBuddy.Models
 {
-    class Prefs
+    public class Prefs
     {
         public string unit { get; set; } = "C";
         public bool darkMode { get; set; } = false;

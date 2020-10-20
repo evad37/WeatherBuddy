@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WeatherBuddy.Models
 {
-    class Location
+    public class Location
     {
         public int id { get; set; }
         public string name { get; set; }

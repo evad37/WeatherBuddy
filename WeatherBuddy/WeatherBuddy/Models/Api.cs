@@ -6,7 +6,7 @@ using Xamarin.Essentials;
 
 namespace WeatherBuddy.Models
 {
-    class Api
+    public class Api
     {  
         /// <summary>
         /// HttpClient instance
