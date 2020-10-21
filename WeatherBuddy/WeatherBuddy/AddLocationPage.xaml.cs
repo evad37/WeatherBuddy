@@ -142,6 +142,21 @@ namespace WeatherBuddy
             foreach (Location location in filteredLocations)
             {
                 Frame locationFrame = Components.LocationOverview(location);
+                var locationFrame_tap = new TapGestureRecognizer();
+                locationFrame_tap.Tapped += async (s, e) =>
+                {
+                    weatherCollection.locations.Add(location);
+                    bool finished = await DisplayAlert("Location added", $"{location.name} has been added!", "Finished", "Add another");
+                    if (finished)
+                    {
+                        CloseWindow();
+                    } else
+                    {
+                        LocationFilterEntry.Text = string.Empty;
+                        UpdateUI();
+                    }
+                };
+                locationFrame.GestureRecognizers.Add(locationFrame_tap);
                 FilterResultsStackLayout.Children.Add(locationFrame);
             }
         }
