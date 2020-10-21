@@ -15,38 +15,19 @@
             <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Margin="10,4" Clicked="BackButton_Clicked"/>
             <Label Text="Filter" Margin="10,4,0,0"/>
             <Entry x:Name="LocationFilterEntry" Placeholder="Enter location" Margin="10,0,0,4" TextChanged="LocationFilterEntry_TextChanged"/>
+            <ActivityIndicator x:Name="LocationsLoadingActivityIndicator" IsRunning="true" />
             <ScrollView>
                 <StackLayout x:Name="FilterResultsStackLayout" Orientation="Vertical">
+                    <!-- sample of what the programatically created children should look like:
+                    
                     <Frame BorderColor="Beige">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
                             <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
                         </StackLayout>
                     </Frame>
-                    <Frame BorderColor="Beige">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame BorderColor="Beige">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame BorderColor="Beige">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame BorderColor="Beige">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
-                        </StackLayout>
-                    </Frame>
+                    
+                     -->
                 </StackLayout>
             </ScrollView>
         </StackLayout>
