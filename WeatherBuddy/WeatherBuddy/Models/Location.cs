@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,24 +11,67 @@ namespace WeatherBuddy.Models
 {
     public class Location
     {
+        /// <summary>
+        /// OpenWeatherMap ID
+        /// </summary>
         public int id { get; set; }
+        /// <summary>
+        /// Name of location
+        /// </summary>
         public string name { get; set; }
+        /// <summary>
+        /// 2-letter state code for location
+        /// </summary>
         public string state { get; set; }
+        /// <summary>
+        /// 2-letter country code for location
+        /// </summary>
         public string country { get; set; }
+        /// <summary>
+        /// Current tempurature in degrees Kelvin
+        /// </summary>
         public double tempNow { get; private set; }
+        /// <summary>
+        /// Description of current conditions
+        /// </summary>
         public string conditions { get; private set; }
         /// <summary>
         /// Tuple of error message headring and body
         /// </summary>
         (string, string) errorMessage = ("", "");
-
+        /// <summary>
+        /// Name of country if available, otherwise the country code
+        /// </summary>
+        string countryName
+        {
+            get
+            {
+                try
+                {
+                    return (new RegionInfo(country)).EnglishName;
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                    return country;
+                }
+            }
+        }
+        /// <summary>
+        /// The location's state and country, or just country, depending on whether state has a value
+        /// </summary>
         public string stateAndCountry
         {
             get => string.IsNullOrEmpty(state)
-                ? country
-                : string.Format("{0}, {1}", state, country);
+                ? countryName
+                : string.Format("{0}, {1}", state, countryName);
         }
 
+        /// <summary>
+        /// Gets current weather for this location from the api  
+        /// </summary>
+        /// <param name="api">Api object to use for request</param>
+        /// <returns>True if successful, false if there was an error</returns>
         public async Task<bool> GetWeather(Api api)
         {
             bool isLoaded = false;
