@@ -25,7 +25,21 @@ namespace WeatherBuddy
         /// </summary>
         private void UpdateUI()
         {
-            // TODO
+            LocationsStackLayout.Children.Clear();
+            if (weatherCollection.locations.Count > 0)
+            {
+                foreach (Location location in weatherCollection.locations)
+                {
+                    Frame frame = Components.LocationWeather(location);
+                    LocationsStackLayout.Children.Add(frame);
+                }
+            }
+            else
+            {
+                Label noLocationsLabel = new Label();
+                noLocationsLabel.Text = "You don't yet have any locations in your collection.";
+                LocationsStackLayout.Children.Add(noLocationsLabel);
+            }
         }
 
         private void BackButton_Clicked(object sender, EventArgs e) => ClosePage();
