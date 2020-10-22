@@ -12,8 +12,18 @@ namespace WeatherBuddy.Models
     /// </summary>
     public class WeatherCollection
     {
+        /// <summary>
+        /// User preferences
+        /// </summary>
         public Prefs prefs { get; private set; } = new Prefs();
+        /// <summary>
+        /// Locations in the user's collection
+        /// </summary>
         public List<Location> locations { get; private set; } = new List<Location>();
+        /// <summary>
+        /// User's favourite locations
+        /// </summary>
+        public List<Location> favouriteLocations => locations.Where(location => location.isFavourite).ToList();
         readonly string dataFolderName = "WeatherBuddy";
         readonly string dataFileName = "Locations";
 

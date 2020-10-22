@@ -31,15 +31,21 @@ namespace WeatherBuddy
         /// Data is currently be loaded
         /// </summary>
         private bool isLoading = false;
+        /// <summary>
+        /// Callback to execute when page is closing
+        /// </summary>
+        private Action onClosing;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="weatherCollection">User's collection of weather locations</param>
-        public AddLocationPage(WeatherCollection weatherCollection)
+        /// <param name="onClosing">Callback to execute when page is closing</param>
+        public AddLocationPage(WeatherCollection weatherCollection, Action onClosing)
         {
             InitializeComponent();
             this.weatherCollection = weatherCollection;
+            this.onClosing = onClosing;
         }
 
         /// <summary>
@@ -165,6 +171,7 @@ namespace WeatherBuddy
         private async void CloseWindow()
         {
             await Navigation.PopModalAsync();
+            onClosing();
         }
 
         private void LocationFilterEntry_TextChanged(object sender, TextChangedEventArgs e) => FilterChanged(((Entry)sender).Text);

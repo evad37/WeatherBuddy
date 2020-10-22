@@ -14,10 +14,12 @@ namespace WeatherBuddy
     {
         private WeatherCollection weatherCollection;
         bool isUpdating = false;
-        public PreferencesPage(WeatherCollection weatherCollection)
+        private Action onClosing;
+        public PreferencesPage(WeatherCollection weatherCollection, Action onClosing)
         {
             InitializeComponent();
             this.weatherCollection = weatherCollection;
+            this.onClosing = onClosing;
             UpdateUI();
         }
 
@@ -91,6 +93,7 @@ namespace WeatherBuddy
         private async void CloseWindow()
         {
             await Navigation.PopModalAsync();
+            onClosing();
         }
 
         private void ResetButton_Clicked(object sender, EventArgs e)

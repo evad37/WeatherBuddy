@@ -28,8 +28,17 @@ namespace WeatherBuddy.Models
         /// </summary>
         public string country { get; set; }
         /// <summary>
+        /// Location is one of the user's favourites
+        /// </summary>
+        public bool isFavourite { get; set; } = false;
+        /// <summary>
+        /// Location is the user's main location
+        /// </summary>
+        public bool isMain { get; set; } = false;
+        /// <summary>
         /// Current tempurature in degrees Kelvin
         /// </summary>
+        /// 
         public double tempNow { get; private set; }
         /// <summary>
         /// Description of current conditions

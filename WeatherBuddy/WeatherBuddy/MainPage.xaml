@@ -12,7 +12,7 @@
             <Button x:Name="PreferencesButton" Text="Preferences" HorizontalOptions="FillAndExpand" Clicked="PreferencesButton_Clicked"/>
         </StackLayout>
         <ScrollView>
-            <StackLayout>
+            <StackLayout x:Name="LocationsStackLayout">
 
                 <!-- Main location -->
                 <Frame BorderColor="Beige">

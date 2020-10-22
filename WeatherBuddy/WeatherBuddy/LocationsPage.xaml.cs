@@ -13,10 +13,12 @@ namespace WeatherBuddy
     public partial class LocationsPage : ContentPage
     {
         private WeatherCollection weatherCollection;
-        public LocationsPage(WeatherCollection weatherCollection)
+        private Action onClosing;
+        public LocationsPage(WeatherCollection weatherCollection, Action onClosing)
         {
             InitializeComponent();
             this.weatherCollection = weatherCollection;
+            this.onClosing = onClosing;
             UpdateUI();
         }
 
@@ -47,12 +49,13 @@ namespace WeatherBuddy
         private async void ClosePage()
         {
             await Navigation.PopModalAsync();
+            onClosing();
         }
 
         private void NewLocationButton_Clicked(object sender, EventArgs e) => OpenAddNewLocationPage();
         private async void OpenAddNewLocationPage()
         {
-            AddLocationPage addLocationPage = new AddLocationPage(weatherCollection);
+            AddLocationPage addLocationPage = new AddLocationPage(weatherCollection, UpdateUI);
             await Navigation.PushModalAsync(addLocationPage);
         }
     }
