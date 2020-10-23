@@ -11,6 +11,7 @@ namespace WeatherBuddy
             InitializeComponent();
             Device.SetFlags(new string[] { "RadioButton_Experimental" });
             MainPage = new MainPage();
+
         }
 
         protected async override void OnStart()

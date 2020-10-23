@@ -22,7 +22,7 @@ namespace WeatherBuddy
         /// <summary>
         /// JSON data for available locations
         /// </summary>
-        private JArray availableLocations;
+        private JArray availableLocations = new JArray();
         /// <summary>
         /// Text to filter available locations (by name)
         /// </summary>
@@ -46,24 +46,20 @@ namespace WeatherBuddy
             InitializeComponent();
             this.weatherCollection = weatherCollection;
             this.onClosing = onClosing;
+            // Load locations asynchronosuly in the background
+            Task.Run(LoadLocationsAsync);
         }
 
         /// <summary>
         /// Async tasks to do when the page appears.
         /// </summary>
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-            await Task.Delay(500); // Gives time for the page to actually be displayed.
-            await LoadLocationsAsync().ContinueWith(_ =>
-            {
-                // Switch to main thread so UI can be modified
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    UpdateUI();
-                });
-            });
+            // Reset the filter entry, which trigger UI to update
+            LocationFilterEntry.Text = string.Empty;
         }
+        
 
         /// <summary>
         /// Load list of (and data for) available locations from json file
@@ -76,11 +72,21 @@ namespace WeatherBuddy
             {
                 var assembly = IntrospectionExtensions.GetTypeInfo(typeof(AddLocationPage)).Assembly;
                 Stream stream = assembly.GetManifestResourceStream("WeatherBuddy.Data.citylist.json");
-                string text = "";
-                using (var reader = new System.IO.StreamReader(stream))
+                availableLocations = new JArray();
+                using (var streamReader = new System.IO.StreamReader(stream))
+                using (JsonTextReader reader = new JsonTextReader(streamReader))
                 {
-                    text = await reader.ReadToEndAsync();
-                    availableLocations = JsonConvert.DeserializeObject<JArray>(text);
+                    var serializer = new JsonSerializer();
+                    while (await reader.ReadAsync())
+                    {
+                        if (reader.TokenType == JsonToken.StartObject)
+                        {
+                            availableLocations.Add(serializer.Deserialize<JObject>(reader));
+                        }
+                        // Very short delay to avoid blocking thread
+                        long delayTicks = 1;
+                        await Task.Delay(new TimeSpan(delayTicks));
+                    }
                 }
             }
             catch (Exception e)
@@ -90,6 +96,7 @@ namespace WeatherBuddy
             finally
             {
                 isLoading = false;
+                Device.BeginInvokeOnMainThread(this.UpdateUI); // Main thread requiref for UI modifications
             }
         }
 
@@ -123,7 +130,7 @@ namespace WeatherBuddy
                     location.state = item.Value<string>("state");
                     location.country = item.Value<string>("country");
                     filteredLocations.Add(location);
-                    // Retrun early if the limit has now been reached
+                    // Return early if the limit has now been reached
                     if (filteredLocations.Count == resultCountLimit)
                     {
                         return filteredLocations;
@@ -174,15 +181,14 @@ namespace WeatherBuddy
             onClosing();
         }
 
-        private void LocationFilterEntry_TextChanged(object sender, TextChangedEventArgs e) => FilterChanged(((Entry)sender).Text);
-
-        private async void FilterChanged(string filterText) {
-            if (filterText.Trim() == locationFilter)
+        private void LocationFilterEntry_TextChanged(object sender, TextChangedEventArgs e) {
+            string filterText = ((Entry)sender).Text.Trim();
+            if (filterText == locationFilter)
             {
-                // No effective difference
+                // No effective difference (just whitespace)
                 return;
             }
-            locationFilter = filterText.Trim();
+            locationFilter = filterText;
             UpdateUI();
         }
 

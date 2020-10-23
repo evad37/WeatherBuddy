@@ -10,9 +10,13 @@ namespace WeatherBuddy
     public partial class MainPage : ContentPage
     {
         public WeatherCollection weatherCollection { get; private set; } = new WeatherCollection();
+        private PreferencesPage preferencesPage { get; set; }
+        private LocationsPage locationsPage { get; set; }
         public MainPage()
         {
             InitializeComponent();
+            preferencesPage = new PreferencesPage(weatherCollection, UpdateUI);
+            locationsPage = new LocationsPage(weatherCollection, UpdateUI);
             UpdateUI();
         }
 
@@ -48,14 +52,12 @@ namespace WeatherBuddy
 
         private async void OpenLocationsPage()
         {
-            LocationsPage locationsPage = new LocationsPage(weatherCollection, UpdateUI);
             await Navigation.PushModalAsync(locationsPage);
         }
 
         private void PreferencesButton_Clicked(object sender, EventArgs e) => OpenPreferencesPage();
         private async void OpenPreferencesPage()
         {
-            PreferencesPage preferencesPage = new PreferencesPage(weatherCollection, UpdateUI);
             await Navigation.PushModalAsync(preferencesPage);
         }
     }

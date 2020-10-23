@@ -14,11 +14,13 @@ namespace WeatherBuddy
     {
         private WeatherCollection weatherCollection;
         private Action onClosing;
+        private AddLocationPage addLocationPage { get; set; }
         public LocationsPage(WeatherCollection weatherCollection, Action onClosing)
         {
             InitializeComponent();
             this.weatherCollection = weatherCollection;
             this.onClosing = onClosing;
+            this.addLocationPage = new AddLocationPage(weatherCollection, UpdateUI);
             UpdateUI();
         }
 
@@ -61,7 +63,6 @@ namespace WeatherBuddy
         private void NewLocationButton_Clicked(object sender, EventArgs e) => OpenAddNewLocationPage();
         private async void OpenAddNewLocationPage()
         {
-            AddLocationPage addLocationPage = new AddLocationPage(weatherCollection, UpdateUI);
             await Navigation.PushModalAsync(addLocationPage);
         }
 
