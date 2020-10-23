@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using WeatherBuddy.Models;
@@ -145,7 +146,11 @@ namespace WeatherBuddy
                     }
                 }
             }
-            return filteredLocations;
+            // Sort locations that start with the filtered text ahead of other matches
+            return filteredLocations.OrderBy(location => location.name.IndexOf(locationFilter) == 0
+                ? $"AAAA{location.name}"
+                : location.name
+            ).ToList();
         }        
 
         /// <summary>
