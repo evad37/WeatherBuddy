@@ -13,12 +13,15 @@ namespace WeatherBuddy
             MainPage = new MainPage();
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
+            await ((MainPage)MainPage).weatherCollection.LoadLocationsAsync();
+            ((MainPage)MainPage).UpdateUI();
         }
 
-        protected override void OnSleep()
+        protected async override void OnSleep()
         {
+            await ((MainPage)MainPage).weatherCollection.SaveLocations();
         }
 
         protected override void OnResume()

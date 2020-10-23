@@ -9,7 +9,7 @@ namespace WeatherBuddy
 {
     public partial class MainPage : ContentPage
     {
-        private WeatherCollection weatherCollection = new WeatherCollection();
+        public WeatherCollection weatherCollection { get; private set; } = new WeatherCollection();
         public MainPage()
         {
             InitializeComponent();
@@ -19,7 +19,7 @@ namespace WeatherBuddy
         /// <summary>
         /// Updates the UI based on the current state of the model
         /// </summary>
-        private void UpdateUI()
+        public void UpdateUI()
         {
             LocationsStackLayout.Children.Clear();
             List<Location> mainPageLocations = weatherCollection.favouriteLocations.Count == 0

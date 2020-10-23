@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WeatherBuddy.Models
 {
@@ -29,21 +30,12 @@ namespace WeatherBuddy.Models
 
         public WeatherCollection()
         {
-            LoadLocations();
-        }
-
-        /// <summary>
-        /// Loads the user's locations from the device's local storage
-        /// </summary>
-        public void LoadLocations()
-        {
-            LoadLocationsAsync();
         }
 
         /// <summary>
         /// Asynchronously loads the user's locations from the device's local storage
         /// </summary>
-        private async void LoadLocationsAsync()
+        public async Task LoadLocationsAsync()
         {
             IFolder folder = FileSystem.Current.LocalStorage;
             folder = await folder.CreateFolderAsync(dataFolderName, CreationCollisionOption.OpenIfExists);
@@ -57,9 +49,9 @@ namespace WeatherBuddy.Models
         }
 
         /// <summary>
-        /// Saves the user's locations from the device's local storage
+        /// Asynchronously saves the user's locations to the device's local storage
         /// </summary>
-        public async void SaveLocations()
+        public async Task SaveLocations()
         {
             IFolder folder = FileSystem.Current.LocalStorage;
             folder = await folder.CreateFolderAsync(dataFolderName, CreationCollisionOption.OpenIfExists);
