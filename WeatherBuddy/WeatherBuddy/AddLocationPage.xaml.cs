@@ -132,11 +132,16 @@ namespace WeatherBuddy
                     location.name = item.Value<string>("name");
                     location.state = item.Value<string>("state");
                     location.country = item.Value<string>("country");
-                    filteredLocations.Add(location);
-                    // Return early if the limit has now been reached
-                    if (filteredLocations.Count == resultCountLimit)
+                    // Check it isn't already there, as the data list contains some duplicates.
+                    bool isDuplicate = filteredLocations.FindIndex(l => l.name == location.name && l.state == location.state && l.country == location.country) >= 0;
+                    if (!isDuplicate)
                     {
-                        return filteredLocations;
+                        filteredLocations.Add(location);
+                        // Return early if the limit has now been reached
+                        if (filteredLocations.Count == resultCountLimit)
+                        {
+                            return filteredLocations;
+                        }
                     }
                 }
             }
