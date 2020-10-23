@@ -84,5 +84,10 @@ namespace WeatherBuddy.Models
                 locations.Insert(index + 1, location);
             }
         }
+
+        public bool HasLocation(int id)
+        {
+            return locations.FindIndex(location => location.id == id) >= 0;
+        }
     }
 }

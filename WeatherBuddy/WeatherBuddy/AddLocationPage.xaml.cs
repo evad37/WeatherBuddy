@@ -121,8 +121,11 @@ namespace WeatherBuddy
             // Add each matching location as a Location object
             foreach (JObject item in availableLocations.Children<JObject>())
             {
+                int id = item.Value<int>("id");
+                bool alreadyInCollection = weatherCollection.HasLocation(id);
                 string name = item.Value<string>("name");
-                if (name.ToLower().Contains(locationFilter.ToLower()))
+                bool isMatch = name.ToLower().Contains(locationFilter.ToLower());
+                if (isMatch && !alreadyInCollection)
                 {
                     Location location = new Location();
                     location.id = item.Value<int>("id");
