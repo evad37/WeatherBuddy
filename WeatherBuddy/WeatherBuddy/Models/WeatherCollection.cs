@@ -58,5 +58,31 @@ namespace WeatherBuddy.Models
             IFile file = await folder.CreateFileAsync(dataFileName, CreationCollisionOption.OpenIfExists);
             await file.WriteAllTextAsync(JsonConvert.SerializeObject(locations));
         }
+
+        public void EditLocation(string action, Location location)
+        {
+            int index = locations.IndexOf(location);
+            if (action == "Delete")
+            {
+                locations.Remove(location);
+            } else if (action == "Set as favourite") {
+                location.isFavourite = true;            
+            } else if (action == "Unset as favourite") {
+                location.isFavourite = false;
+            }  else if (action == "Set as main location")
+            {
+                location.isFavourite = true;
+                locations.Remove(location);
+                locations.Insert(0, location);
+            } else if (action == "Move up" && index > 0)
+            {
+                locations.Remove(location);
+                locations.Insert(index - 1, location);
+            } else if (action == "Move down" && index < locations.Count-1)
+            {
+                locations.Remove(location);
+                locations.Insert(index + 1, location);
+            }
+        }
     }
 }

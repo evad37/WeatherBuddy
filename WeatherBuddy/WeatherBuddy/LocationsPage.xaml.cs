@@ -33,6 +33,12 @@ namespace WeatherBuddy
                 foreach (Location location in weatherCollection.locations)
                 {
                     Frame frame = Components.LocationWeather(location);
+                    var locationFrame_tap = new TapGestureRecognizer();
+                    locationFrame_tap.Tapped += (s, e) =>
+                    {
+                        ShowEditOptions(location);
+                    };
+                    frame.GestureRecognizers.Add(locationFrame_tap);
                     LocationsStackLayout.Children.Add(frame);
                 }
             }
@@ -57,6 +63,36 @@ namespace WeatherBuddy
         {
             AddLocationPage addLocationPage = new AddLocationPage(weatherCollection, UpdateUI);
             await Navigation.PushModalAsync(addLocationPage);
+        }
+
+        private async void ShowEditOptions(Location location)
+        {
+            List<string> actions = new List<string>();
+            int currentIndex = weatherCollection.locations.IndexOf(location);
+            if (location.isFavourite)
+            {
+                actions.Add("Unset as favourite");
+            } else
+            {
+                actions.Add("Set as favourite");
+            }
+            if (currentIndex > 0)
+            {
+                actions.Add("Set as main location");
+                actions.Add("Move up");
+            }
+            if (currentIndex < weatherCollection.locations.Count-1)
+            {
+                actions.Add("Move down");
+            }
+
+            string selectedAction = await DisplayActionSheet($"Editing {location.name}",
+                "Cancel",
+                "Delete",
+                actions.ToArray()
+            );
+            weatherCollection.EditLocation(selectedAction, location);
+            UpdateUI();
         }
     }
 }
