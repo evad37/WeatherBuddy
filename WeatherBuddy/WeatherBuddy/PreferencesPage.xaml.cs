@@ -22,6 +22,11 @@ namespace WeatherBuddy
             this.onClosing = onClosing;
             UpdateUI();
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            UpdateUI();
+        }
 
         private void UpdateUI()
         {

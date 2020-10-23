@@ -23,6 +23,11 @@ namespace WeatherBuddy
             this.addLocationPage = new AddLocationPage(weatherCollection, UpdateUI);
             UpdateUI();
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            UpdateUI();
+        }
 
         /// <summary>
         /// Updates the UI based on the current state of the model
