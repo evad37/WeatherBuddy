@@ -4,8 +4,8 @@
              x:Class="WeatherBuddy.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
-            <Label Text="WeatherBuddy!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        <Frame x:Name="TitleFrame" BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
+            <Label x:Name="TitleLabel" Text="WeatherBuddy!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="4,4,4,10">
             <Button x:Name="LocationsButton" Text="My Locations" HorizontalOptions="FillAndExpand" Clicked="LocationsButton_Clicked"/>

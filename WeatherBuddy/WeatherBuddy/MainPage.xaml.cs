@@ -26,6 +26,9 @@ namespace WeatherBuddy
 
         private async void UpdateWeatherAndUiAsync()
         {
+            // Update colours
+            TitleFrame.BackgroundColor = Colours.GetColor("TitleBackground");
+            TitleLabel.TextColor = Colours.GetColor("TitleText");
             // Update each location
             await weatherCollection.LocationsLoaded;
             if (weatherCollection.favouriteLocation != null)
