@@ -28,16 +28,16 @@ namespace WeatherBuddy
         {
             // Update each location
             await weatherCollection.LocationsLoaded;
-            if (weatherCollection.locations.Count > 0)
+            if (weatherCollection.favouriteLocation != null)
             {
                 MainPageActivityIndicator.IsVisible = true;
                 MainPageActivityIndicator.IsRunning = true;
                 NoLocationsLabel.IsVisible = false;
                 MainLocationFrame.IsVisible = true;
-                MainLocationNameLabel.Text = weatherCollection.locations[0].name;
+                MainLocationNameLabel.Text = weatherCollection.favouriteLocation.name;
                 MainLocationTempLabel.Text = "---";
                 MainLocationDescriptionLabel.Text = "----";
-                await weatherCollection.locations[0].GetWeather(
+                await weatherCollection.favouriteLocation.GetWeather(
                     weatherCollection.api,
                     (temp, conditions) =>
                     {

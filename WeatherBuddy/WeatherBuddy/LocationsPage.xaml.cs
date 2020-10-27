@@ -24,11 +24,6 @@ namespace WeatherBuddy
             UpdateUI();
         }
 
-        private void WeatherCollection_Updated(object sender, DateTime updatedAt)
-        {
-            UpdateUI();
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -81,21 +76,19 @@ namespace WeatherBuddy
         {
             List<string> actions = new List<string>();
             int currentIndex = weatherCollection.locations.IndexOf(location);
-            if (location.isFavourite)
-            {
-                actions.Add("Unset as favourite");
-            } else
+            if (!location.isFavourite)
             {
                 actions.Add("Set as favourite");
             }
             if (currentIndex > 0)
             {
-                actions.Add("Set as main location");
+                actions.Add("Move to start");
                 actions.Add("Move up");
             }
             if (currentIndex < weatherCollection.locations.Count-1)
             {
                 actions.Add("Move down");
+                actions.Add("Move to end");
             }
 
             string selectedAction = await DisplayActionSheet($"Editing {location.name}",

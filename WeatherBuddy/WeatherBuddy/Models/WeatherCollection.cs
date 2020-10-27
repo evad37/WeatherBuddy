@@ -27,7 +27,18 @@ namespace WeatherBuddy.Models
         /// <summary>
         /// User's favourite locations
         /// </summary>
-        public List<Location> favouriteLocations => locations.Where(location => location.isFavourite).ToList();
+        public Location favouriteLocation
+        {
+            get
+            {
+                List<Location> favourites = locations.Where(location => location.isFavourite).ToList();
+                if (favourites.Count == 0)
+                {
+                    return null;
+                }
+                return favourites[0];
+            }
+        }
         readonly string dataFolderName = "WeatherBuddy";
         readonly string dataFileName = "Locations";
         public Api api { get; } = new Api();
@@ -82,15 +93,16 @@ namespace WeatherBuddy.Models
             if (action == "Delete")
             {
                 locations.Remove(location);
+                if (favouriteLocation == null && locations.Count > 0)
+                {
+                    locations[0].isFavourite = true;
+                }
             } else if (action == "Set as favourite") {
-                location.isFavourite = true;            
-            } else if (action == "Unset as favourite") {
-                location.isFavourite = false;
-            }  else if (action == "Set as main location")
-            {
+                // Unset previous favourite
+                if (favouriteLocation != null) {
+                    favouriteLocation.isFavourite = false;
+                }
                 location.isFavourite = true;
-                locations.Remove(location);
-                locations.Insert(0, location);
             } else if (action == "Move up" && index > 0)
             {
                 locations.Remove(location);
@@ -99,6 +111,16 @@ namespace WeatherBuddy.Models
             {
                 locations.Remove(location);
                 locations.Insert(index + 1, location);
+            }
+            else if (action == "Move to start" && index > 0)
+            {
+                locations.Remove(location);
+                locations.Insert(0, location);
+            }
+            else if (action == "Move to end" && index < locations.Count - 1)
+            {
+                locations.Remove(location);
+                locations.Insert(locations.Count - 1, location);
             }
         }
 
@@ -110,6 +132,15 @@ namespace WeatherBuddy.Models
         public bool HasLocation(int id)
         {
             return locations.FindIndex(location => location.id == id) >= 0;
+        }
+
+        public void AddLocation(Location location)
+        {
+            locations.Add(location);
+            if (favouriteLocation == null)
+            {
+                location.isFavourite = true;
+            }
         }
     }
 }

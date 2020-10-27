@@ -171,7 +171,7 @@ namespace WeatherBuddy
                 var locationFrame_tap = new TapGestureRecognizer();
                 locationFrame_tap.Tapped += async (s, e) =>
                 {
-                    weatherCollection.locations.Add(location);
+                    weatherCollection.AddLocation(location);
                     bool finished = await DisplayAlert("Location added", $"{location.name} has been added!", "Finished", "Add another");
                     if (finished)
                     {
