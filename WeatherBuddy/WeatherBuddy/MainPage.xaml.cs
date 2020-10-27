@@ -43,7 +43,7 @@ namespace WeatherBuddy
                     {
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                            MainLocationTempLabel.Text = $"{temp} K";
+                            MainLocationTempLabel.Text = Util.FormatTemp(temp, WeatherCollection.prefs.unit);
                             MainLocationDescriptionLabel.Text = conditions;
                         });
                     },

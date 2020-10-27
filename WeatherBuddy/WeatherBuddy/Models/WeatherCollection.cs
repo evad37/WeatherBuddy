@@ -19,7 +19,7 @@ namespace WeatherBuddy.Models
         /// <summary>
         /// User preferences
         /// </summary>
-        public Prefs prefs { get; private set; } = new Prefs();
+        public static Prefs prefs { get; private set; } = new Prefs();
         /// <summary>
         /// Locations in the user's collection
         /// </summary>

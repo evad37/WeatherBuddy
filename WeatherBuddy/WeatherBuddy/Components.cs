@@ -78,54 +78,17 @@ namespace WeatherBuddy
             // Intentioanlly not awaited, the successHandler will execute when needed
             location.GetWeather(
                 api,
-                (temp, cond) => {
+                (temp, conditions) => {
                     Device.BeginInvokeOnMainThread(() =>
                     {
-                        tempLabel.Text = $"{location.tempNow}°K";
-                        conditionsLabel.Text = location.conditions;
+                        tempLabel.Text = Util.FormatTempInteger(temp, WeatherCollection.prefs.unit);
+                        conditionsLabel.Text = conditions;
                     });
                 },
-                (errTitle, errMessage) => {  }
+                (_errTitle, _errMessage) => {  }
             );
 
 
-            return frame;
-        }
-
-        public static Frame MainLocationWeather(Location location)
-        {
-            Label cityNameLabel = new Label();
-            cityNameLabel.Text = location.name;
-            cityNameLabel.VerticalOptions = LayoutOptions.Center;
-            cityNameLabel.FontSize = 18;
-            cityNameLabel.Margin = 0;
-            cityNameLabel.Padding = 0;
-
-            Label tempLabel = new Label();
-            tempLabel.Text = $"{location.tempNow}°K";
-            tempLabel.FontSize = 80;
-            tempLabel.VerticalOptions = LayoutOptions.Center;
-            tempLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            tempLabel.Margin = 0;
-            tempLabel.Padding = 0;
-
-            Label conditionsLabel = new Label();
-            conditionsLabel.Text = location.conditions;
-            conditionsLabel.FontSize = 16;
-            conditionsLabel.VerticalOptions = LayoutOptions.Center;
-            conditionsLabel.HorizontalOptions = LayoutOptions.Center;
-            conditionsLabel.Margin = 0;
-            conditionsLabel.Padding = 0;
-
-            StackLayout stackLayout = new StackLayout();
-            stackLayout.Orientation = StackOrientation.Vertical;
-            stackLayout.Children.Add(cityNameLabel);
-            stackLayout.Children.Add(tempLabel);
-            stackLayout.Children.Add(conditionsLabel);
-
-            Frame frame = new Frame();
-            frame.BorderColor = Color.Beige;
-            frame.Content = stackLayout;
             return frame;
         }
     }

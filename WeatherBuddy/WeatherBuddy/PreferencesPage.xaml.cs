@@ -31,19 +31,19 @@ namespace WeatherBuddy
         private void UpdateUI()
         {
             isUpdating = true;
-            if (weatherCollection.prefs.unit == "C" && !CelciusRadioButton.IsChecked)
+            if (WeatherCollection.prefs.unit == "C" && !CelciusRadioButton.IsChecked)
             {
                 CelciusRadioButton.IsChecked = true;
             }
-            else if (weatherCollection.prefs.unit == "F" && !FahrenheitRadioButton.IsChecked)
+            else if (WeatherCollection.prefs.unit == "F" && !FahrenheitRadioButton.IsChecked)
             {
                 FahrenheitRadioButton.IsChecked = true;
             }
-            if (DarkModeSwitch.IsToggled != weatherCollection.prefs.darkMode)
+            if (DarkModeSwitch.IsToggled != WeatherCollection.prefs.darkMode)
             {
-                DarkModeSwitch.IsToggled = weatherCollection.prefs.darkMode;
+                DarkModeSwitch.IsToggled = WeatherCollection.prefs.darkMode;
             }
-            int themePickerItemIndex = ThemePicker.Items.IndexOf(weatherCollection.prefs.theme);
+            int themePickerItemIndex = ThemePicker.Items.IndexOf(WeatherCollection.prefs.theme);
             if (ThemePicker.SelectedIndex != themePickerItemIndex)
             {
                 ThemePicker.SelectedIndex = themePickerItemIndex;
@@ -55,7 +55,7 @@ namespace WeatherBuddy
         {
             if (!isUpdating && ((RadioButton)sender).IsChecked)
             {
-                weatherCollection.prefs.unit = "C";
+                WeatherCollection.prefs.unit = "C";
                 UpdateUI();
             }
         }
@@ -64,7 +64,7 @@ namespace WeatherBuddy
         {
             if (!isUpdating && ((RadioButton)sender).IsChecked)
             {
-                weatherCollection.prefs.unit = "F";
+                WeatherCollection.prefs.unit = "F";
                 UpdateUI();
             }
         }
@@ -73,7 +73,7 @@ namespace WeatherBuddy
         {
             if (!isUpdating)
             {
-                weatherCollection.prefs.darkMode = ((Switch)sender).IsToggled;
+                WeatherCollection.prefs.darkMode = ((Switch)sender).IsToggled;
                 UpdateUI();
             }
         }
@@ -85,7 +85,7 @@ namespace WeatherBuddy
                 object theme = ((Picker)sender).SelectedItem;
                 if (theme != null)
                 {
-                    weatherCollection.prefs.theme = theme.ToString();
+                    WeatherCollection.prefs.theme = theme.ToString();
                     UpdateUI();
                 }
             }
@@ -103,16 +103,16 @@ namespace WeatherBuddy
 
         private void ResetButton_Clicked(object sender, EventArgs e)
         {
-            weatherCollection.prefs.unit = "C";
-            weatherCollection.prefs.darkMode = false;
-            weatherCollection.prefs.theme = "Sky";
+            WeatherCollection.prefs.unit = "C";
+            WeatherCollection.prefs.darkMode = false;
+            WeatherCollection.prefs.theme = "Sky";
             UpdateUI();
             DisplayAlert("Reset completed", "Your preferences have been reset to the defaults", "OK");
         }
 
         protected override void OnDisappearing()
         {
-            weatherCollection.prefs.SavePreferences();
+            WeatherCollection.prefs.SavePreferences();
         }
     }
 }
