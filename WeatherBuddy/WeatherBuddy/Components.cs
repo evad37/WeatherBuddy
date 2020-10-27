@@ -34,17 +34,17 @@ namespace WeatherBuddy
             return frame;
         }
 
-        public static Frame LocationWeather(Location location)
+        public static Frame LocationWeather(Location location, Api api)
         {
             Label cityNameLabel = new Label();
             cityNameLabel.Text = location.name;
             cityNameLabel.FontAttributes = FontAttributes.Bold;
 
             Label conditionsLabel = new Label();
-            conditionsLabel.Text = location.conditions;
+            conditionsLabel.Text = "----";
 
             Label tempLabel = new Label();
-            tempLabel.Text = $"{location.tempNow}°K";
+            tempLabel.Text = "---";
             tempLabel.HorizontalOptions = LayoutOptions.End;
 
             StackLayout innerStackLayout = new StackLayout();
@@ -62,6 +62,19 @@ namespace WeatherBuddy
             Frame frame = new Frame();
             frame.BorderColor = Color.Beige;
             frame.Content = outerStackLayout;
+            // Intentioanlly not awaited, the successHandler will execute when needed
+            location.GetWeather(
+                api,
+                (temp, cond) => {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        tempLabel.Text = $"{location.tempNow}°K";
+                        conditionsLabel.Text = location.conditions;
+                    });
+                },
+                (errTitle, errMessage) => {  }
+            );
+
 
             return frame;
         }

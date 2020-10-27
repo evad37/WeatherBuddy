@@ -2,9 +2,12 @@
 using PCLStorage;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms.Internals;
 
 namespace WeatherBuddy.Models
 {
@@ -27,9 +30,18 @@ namespace WeatherBuddy.Models
         public List<Location> favouriteLocations => locations.Where(location => location.isFavourite).ToList();
         readonly string dataFolderName = "WeatherBuddy";
         readonly string dataFileName = "Locations";
+        public Api api { get; } = new Api();
+        /// <summary>
+        /// Task for loading locations
+        /// </summary>
+        public Task LocationsLoaded { get; private set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public WeatherCollection()
         {
+            LocationsLoaded = LoadLocationsAsync();
         }
 
         /// <summary>
@@ -59,6 +71,11 @@ namespace WeatherBuddy.Models
             await file.WriteAllTextAsync(JsonConvert.SerializeObject(locations));
         }
 
+        /// <summary>
+        /// Edit or delete a location
+        /// </summary>
+        /// <param name="action">Action to peform</param>
+        /// <param name="location">Location to be edited</param>
         public void EditLocation(string action, Location location)
         {
             int index = locations.IndexOf(location);
@@ -85,6 +102,11 @@ namespace WeatherBuddy.Models
             }
         }
 
+        /// <summary>
+        /// Checks if the collection contains a location
+        /// </summary>
+        /// <param name="id">ID of location to check</param>
+        /// <returns>Collection contains the location</returns>
         public bool HasLocation(int id)
         {
             return locations.FindIndex(location => location.id == id) >= 0;

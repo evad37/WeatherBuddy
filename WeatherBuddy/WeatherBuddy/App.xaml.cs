@@ -14,12 +14,6 @@ namespace WeatherBuddy
 
         }
 
-        protected async override void OnStart()
-        {
-            await ((MainPage)MainPage).weatherCollection.LoadLocationsAsync();
-            ((MainPage)MainPage).UpdateUI();
-        }
-
         protected async override void OnSleep()
         {
             await ((MainPage)MainPage).weatherCollection.SaveLocations();

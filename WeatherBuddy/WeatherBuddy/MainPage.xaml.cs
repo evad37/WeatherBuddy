@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using WeatherBuddy.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace WeatherBuddy
 {
@@ -15,36 +17,47 @@ namespace WeatherBuddy
         public MainPage()
         {
             InitializeComponent();
-            preferencesPage = new PreferencesPage(weatherCollection, UpdateUI);
-            locationsPage = new LocationsPage(weatherCollection, UpdateUI);
-            UpdateUI();
+            Debug.WriteLine("[Main page] Initilaised");
+            //weatherCollection.Updated += WeatherCollection_Updated;
+            preferencesPage = new PreferencesPage(weatherCollection, UpdateWeatherAndUiAsync);
+            locationsPage = new LocationsPage(weatherCollection, UpdateWeatherAndUiAsync);
+            UpdateWeatherAndUiAsync();
         }
 
-        /// <summary>
-        /// Updates the UI based on the current state of the model
-        /// </summary>
-        public void UpdateUI()
+        private async void UpdateWeatherAndUiAsync()
         {
-            LocationsStackLayout.Children.Clear();
-            List<Location> mainPageLocations = weatherCollection.favouriteLocations.Count == 0
-                ? weatherCollection.locations
-                : weatherCollection.favouriteLocations;
-            if (mainPageLocations.Count == 0)
+            // Update each location
+            await weatherCollection.LocationsLoaded;
+            if (weatherCollection.locations.Count > 0)
             {
-                Label noLocationsLabel = new Label();
-                noLocationsLabel.Text = "No locations selected. Go to \"My Locations\" and add some to see the weather.";
-                noLocationsLabel.HorizontalOptions = LayoutOptions.Center;
-                LocationsStackLayout.Children.Add(noLocationsLabel);
+                MainPageActivityIndicator.IsVisible = true;
+                MainPageActivityIndicator.IsRunning = true;
+                NoLocationsLabel.IsVisible = false;
+                MainLocationFrame.IsVisible = true;
+                MainLocationNameLabel.Text = weatherCollection.locations[0].name;
+                MainLocationTempLabel.Text = "---";
+                MainLocationDescriptionLabel.Text = "----";
+                await weatherCollection.locations[0].GetWeather(
+                    weatherCollection.api,
+                    (temp, conditions) =>
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            MainLocationTempLabel.Text = $"{temp} K";
+                            MainLocationDescriptionLabel.Text = conditions;
+                        });
+                    },
+                    ShowErrorPopup
+                   );
+                MainPageActivityIndicator.IsVisible = false;
+                MainPageActivityIndicator.IsRunning = false;
             }
             else
             {
-                Frame mainLocationWeather = Components.MainLocationWeather(mainPageLocations[0]);
-                LocationsStackLayout.Children.Add(mainLocationWeather);
-                foreach (Location location in mainPageLocations.Skip(1))
-                {
-                    Frame locationWeather = Components.LocationWeather(location);
-                    LocationsStackLayout.Children.Add(locationWeather);
-                }
+                MainPageActivityIndicator.IsVisible = false;
+                MainPageActivityIndicator.IsRunning = false;
+                MainLocationFrame.IsVisible = false;
+                NoLocationsLabel.IsVisible = true;
             }
         }
 
@@ -59,6 +72,11 @@ namespace WeatherBuddy
         private async void OpenPreferencesPage()
         {
             await Navigation.PushModalAsync(preferencesPage);
+        }
+
+        internal async void ShowErrorPopup(string title, string message)
+        {
+            await DisplayAlert(title, message, "OK");
         }
     }
 }

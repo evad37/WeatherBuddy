@@ -23,6 +23,12 @@ namespace WeatherBuddy
             this.addLocationPage = new AddLocationPage(weatherCollection, UpdateUI);
             UpdateUI();
         }
+
+        private void WeatherCollection_Updated(object sender, DateTime updatedAt)
+        {
+            UpdateUI();
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -39,7 +45,7 @@ namespace WeatherBuddy
             {
                 foreach (Location location in weatherCollection.locations)
                 {
-                    Frame frame = Components.LocationWeather(location);
+                    Frame frame = Components.LocationWeather(location, weatherCollection.api);
                     var locationFrame_tap = new TapGestureRecognizer();
                     locationFrame_tap.Tapped += (s, e) =>
                     {

@@ -13,9 +13,7 @@
         </StackLayout>
         <ScrollView>
             <StackLayout x:Name="LocationsStackLayout">
-
-                <!-- Main location -->
-                <Frame BorderColor="Beige">
+                <Frame x:Name="MainLocationFrame"  BorderColor="Beige" IsVisible="false">
                     <StackLayout x:Name="MainLocationStackLayout" Orientation="Vertical" Padding="0" Spacing="0" Margin="10,0,10,0">
                         <!-- oreintation will change based on device orientation -->
                         <Label x:Name="MainLocationNameLabel" Text="Main Location Name" VerticalOptions="Center" FontSize="18" Margin="0" Padding="0"/>
@@ -23,31 +21,8 @@
                         <Label x:Name="MainLocationDescriptionLabel" Text="Mostly sunny" FontSize="16" VerticalOptions="Center" HorizontalOptions="Center" Margin="0" Padding="0"/>
                     </StackLayout>
                 </Frame>
-                <!-- Favourite locations (will be added programmatically) -->
-                <Frame BorderColor="Beige">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Label Text="Location1Name" HorizontalOptions="StartAndExpand"/>
-                        <Label Text="00°C" HorizontalOptions="End"/>
-                    </StackLayout>
-                </Frame>
-                <Frame BorderColor="Beige">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Label Text="Location2Name" HorizontalOptions="StartAndExpand"/>
-                        <Label Text="00°C" HorizontalOptions="End"/>
-                    </StackLayout>
-                </Frame>
-                <Frame BorderColor="Beige">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Label Text="Location3Name" HorizontalOptions="StartAndExpand"/>
-                        <Label Text="00°C" HorizontalOptions="End"/>
-                    </StackLayout>
-                </Frame>
-                <Frame BorderColor="Beige">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Label Text="Location4Name" HorizontalOptions="StartAndExpand"/>
-                        <Label Text="00°C" HorizontalOptions="End"/>
-                    </StackLayout>
-                </Frame>
+                <Label x:Name="NoLocationsLabel" Text="No locations in your collection. Got to 'My Locations' to add some" IsVisible="false"/>
+                <ActivityIndicator x:Name="MainPageActivityIndicator" IsRunning="true" />
             </StackLayout>
         </ScrollView>
     </StackLayout>
