@@ -34,8 +34,15 @@
                     <Frame BorderColor="Beige" Grid.Row="2" Grid.ColumnSpan="3"/>
 
                     <Label Text="Units"  VerticalOptions="Center"/>
-                    <RadioButton Grid.Column="1" x:Name="CelciusRadioButton" Text="Celcius" GroupName="units" CheckedChanged="CelciusRadioButton_CheckedChanged" />
-                    <RadioButton Grid.Column="2" x:Name="FahrenheitRadioButton" Text="Fahrenheit" GroupName="units" CheckedChanged="FahrenheitRadioButton_CheckedChanged" />
+                    <Picker x:Name="UnitPicker" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndexChanged="UnitPicker_SelectedIndexChanged">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Celcius</x:String>
+                                <x:String>Fahrenheit</x:String>
+                                <x:String>Kelvin</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
 
                     <Label Grid.Row="1" Text="Dark mode"  VerticalOptions="Center"/>
                     <Switch x:Name="DarkModeSwitch" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Toggled="DarkModeSwitch_Toggled" />

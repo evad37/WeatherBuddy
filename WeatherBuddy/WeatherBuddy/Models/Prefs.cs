@@ -7,7 +7,27 @@ namespace WeatherBuddy.Models
 {
     public class Prefs
     {
+
         public string unit { get; set; } = "C";
+        public string unitName
+        {
+            get
+            {
+                if (unit == "C")
+                {
+                    return "Celcius";
+                }
+                else if (unit == "F")
+                {
+                    return "Fahrenheit";
+                }
+                else
+                {
+                    return "Kelvin";
+                }
+                
+            }
+        }
         public bool darkMode { get; set; } = false;
         public string theme { get; set; } = "Sky";
 

@@ -31,18 +31,18 @@ namespace WeatherBuddy
         private void UpdateUI()
         {
             isUpdating = true;
-            if (WeatherCollection.prefs.unit == "C" && !CelciusRadioButton.IsChecked)
+            // Units
+            int unitPickerIndex = UnitPicker.Items.IndexOf(WeatherCollection.prefs.unitName);
+            if (UnitPicker.SelectedIndex != unitPickerIndex)
             {
-                CelciusRadioButton.IsChecked = true;
+                UnitPicker.SelectedIndex = unitPickerIndex;
             }
-            else if (WeatherCollection.prefs.unit == "F" && !FahrenheitRadioButton.IsChecked)
-            {
-                FahrenheitRadioButton.IsChecked = true;
-            }
+            // Dark mode
             if (DarkModeSwitch.IsToggled != WeatherCollection.prefs.darkMode)
             {
                 DarkModeSwitch.IsToggled = WeatherCollection.prefs.darkMode;
             }
+            // Theme
             int themePickerItemIndex = ThemePicker.Items.IndexOf(WeatherCollection.prefs.theme);
             if (ThemePicker.SelectedIndex != themePickerItemIndex)
             {
@@ -51,23 +51,6 @@ namespace WeatherBuddy
             isUpdating = false;
         }
 
-        private void CelciusRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            if (!isUpdating && ((RadioButton)sender).IsChecked)
-            {
-                WeatherCollection.prefs.unit = "C";
-                UpdateUI();
-            }
-        }
-
-        private void FahrenheitRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            if (!isUpdating && ((RadioButton)sender).IsChecked)
-            {
-                WeatherCollection.prefs.unit = "F";
-                UpdateUI();
-            }
-        }
 
         private void DarkModeSwitch_Toggled(object sender, ToggledEventArgs e)
         {
@@ -75,6 +58,18 @@ namespace WeatherBuddy
             {
                 WeatherCollection.prefs.darkMode = ((Switch)sender).IsToggled;
                 UpdateUI();
+            }
+        }
+
+        private void UnitPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isUpdating)
+            {
+                object units = ((Picker)sender).SelectedItem;
+                if (units != null)
+                {
+                    WeatherCollection.prefs.unit = units.ToString().First().ToString();
+                }
             }
         }
 
@@ -114,5 +109,6 @@ namespace WeatherBuddy
         {
             WeatherCollection.prefs.SavePreferences();
         }
+
     }
 }
