@@ -53,9 +53,22 @@ namespace WeatherBuddy
             innerStackLayout.Children.Add(cityNameLabel);
             innerStackLayout.Children.Add(conditionsLabel);
 
+
             StackLayout outerStackLayout = new StackLayout();
             outerStackLayout.Orientation = StackOrientation.Horizontal;
             outerStackLayout.HorizontalOptions = LayoutOptions.FillAndExpand;
+
+            if (location.isFavourite)
+            {
+                Image favouriteImage = new Image();
+                favouriteImage.Source = Device.RuntimePlatform == Device.UWP
+                    ? "Images/star.png"
+                    : "star.png";
+                favouriteImage.WidthRequest = 20;
+                favouriteImage.VerticalOptions = LayoutOptions.Start;
+                outerStackLayout.Children.Add(favouriteImage);
+            }
+
             outerStackLayout.Children.Add(innerStackLayout);
             outerStackLayout.Children.Add(tempLabel);
 
