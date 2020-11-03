@@ -88,6 +88,7 @@ namespace WeatherBuddy
         internal async void ShowErrorPopup(string title, string message)
         {
             await DisplayAlert(title, message, "OK");
+            ReloadButton.IsVisible = true;
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -96,6 +97,12 @@ namespace WeatherBuddy
             bool isLandscapeOrientation = width > height;
             MainLocationStackLayout.Orientation = isLandscapeOrientation ? StackOrientation.Horizontal : StackOrientation.Vertical;
             PageButtonsStackLayout.Orientation = isLandscapeOrientation ? StackOrientation.Horizontal : StackOrientation.Vertical;
+        }
+
+        private void ReloadButton_Clicked(object sender, EventArgs e)
+        {
+            ReloadButton.IsVisible = false;
+            UpdateWeatherAndUiAsync();
         }
     }
 }

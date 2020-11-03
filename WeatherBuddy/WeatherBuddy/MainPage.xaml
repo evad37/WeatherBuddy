@@ -23,6 +23,7 @@
                 </Frame>
                 <Label x:Name="NoLocationsLabel" Text="No locations in your collection. Got to 'My Locations' to add some" IsVisible="false"/>
                 <ActivityIndicator x:Name="MainPageActivityIndicator" IsRunning="true" />
+                <Button x:Name="ReloadButton" Text="Reload data" IsVisible="false" Clicked="ReloadButton_Clicked"/>
             </StackLayout>
         </ScrollView>
     </StackLayout>
