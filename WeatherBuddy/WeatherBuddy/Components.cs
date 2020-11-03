@@ -17,10 +17,12 @@ namespace WeatherBuddy
             cityNameLabel.Text = location.name;
             cityNameLabel.FontAttributes = FontAttributes.Bold;
             cityNameLabel.HorizontalOptions = LayoutOptions.StartAndExpand;
+            cityNameLabel.TextColor = Colours.GetColor("Text");
 
             Label cityLocationLabel = new Label();
             cityLocationLabel.Text = location.stateAndCountry;
             cityLocationLabel.HorizontalOptions = LayoutOptions.End;
+            cityLocationLabel.TextColor = Colours.GetColor("Text");
 
             StackLayout stackLayout = new StackLayout();
             stackLayout.Orientation = StackOrientation.Horizontal;
@@ -28,7 +30,8 @@ namespace WeatherBuddy
             stackLayout.Children.Add(cityLocationLabel);
 
             Frame frame = new Frame();
-            frame.BorderColor = Color.Beige;
+            frame.BorderColor = Colours.GetColor("Accent");
+            frame.BackgroundColor = Colours.GetColor("ContentBg");
             frame.Content = stackLayout;
 
             return frame;
@@ -39,14 +42,17 @@ namespace WeatherBuddy
             Label cityNameLabel = new Label();
             cityNameLabel.Text = location.name;
             cityNameLabel.FontAttributes = FontAttributes.Bold;
+            cityNameLabel.TextColor = Colours.GetColor("Text");
 
             Label conditionsLabel = new Label();
             conditionsLabel.Text = "----";
             conditionsLabel.HorizontalOptions = isLandscapeOrientation ? LayoutOptions.EndAndExpand : LayoutOptions.Start;
+            conditionsLabel.TextColor = Colours.GetColor("Text");
 
             Label tempLabel = new Label();
             tempLabel.Text = "---";
             tempLabel.HorizontalOptions = LayoutOptions.End;
+            tempLabel.TextColor = Colours.GetColor("Text");
 
             StackLayout innerStackLayout = new StackLayout();
             innerStackLayout.Orientation = isLandscapeOrientation ? StackOrientation.Horizontal : StackOrientation.Vertical;
@@ -74,20 +80,22 @@ namespace WeatherBuddy
             outerStackLayout.Children.Add(tempLabel);
 
             Frame frame = new Frame();
-            frame.BorderColor = Color.Beige;
+            frame.BorderColor = Colours.GetColor("Accent");
+            frame.BackgroundColor = Colours.GetColor("ContentBg");
             frame.Content = outerStackLayout;
             // Intentioanlly not awaited, the successHandler will execute when needed
 #pragma warning disable CS4014 // "Because this call is not awaited, execution of the current method continues before the call is completed"
             location.GetWeather(
                 api,
-                (temp, conditions) => {
+                (temp, conditions) =>
+                {
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         tempLabel.Text = Util.FormatTempInteger(temp, WeatherCollection.prefs.unit);
                         conditionsLabel.Text = conditions;
                     });
                 },
-                (_errTitle, _errMessage) => {  }
+                (_errTitle, _errMessage) => { }
             );
 #pragma warning restore CS4014
 

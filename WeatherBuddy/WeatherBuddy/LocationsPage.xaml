@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherBuddy.LocationsPage">
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
+        <Frame x:Name="TitleFrame" BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
                 <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/> <!-- Only shown for horizontal orientation -->
-                <Label Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                <Label x:Name="TitleLabel" Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 <Button x:Name="HorizontalViewNewLocationButton" Text="New location" HorizontalOptions="End" IsVisible="False" Clicked="NewLocationButton_Clicked"/> <!-- Only shown for horizontal orientation -->
             </StackLayout>
         </Frame>
@@ -14,7 +14,7 @@
             <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Clicked="BackButton_Clicked"/>
             <Button x:Name="VerticalViewNewLocationButton" Text="New location" HorizontalOptions="EndAndExpand" Clicked="NewLocationButton_Clicked"/>
         </StackLayout>
-        <Label Text="Tap a loction for edit options" Margin="4"/>
+        <Label x:Name="EditHelpTextLabel" Text="Tap a loction for edit options" Margin="4"/>
         <ScrollView VerticalOptions="StartAndExpand">
             <StackLayout x:Name="LocationsStackLayout">
                 <!-- Locations - will be added programmatically, with the following structure:

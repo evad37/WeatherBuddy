@@ -15,12 +15,18 @@ namespace WeatherBuddy
         private WeatherCollection weatherCollection;
         bool isUpdating = false;
         private Action onClosing;
+        private List<Frame> frames;
+        private List<Label> labels;
+        private List<Picker> pickers;
 
         public PreferencesPage(WeatherCollection weatherCollection, Action onClosing)
         {
             InitializeComponent();
             this.weatherCollection = weatherCollection;
             this.onClosing = onClosing;
+            frames = new List<Frame>() { UnitsFrame, DarkModeFrame, ThemeFrame };
+            labels = new List<Label>() { UnitsLabel, DarkModeLabel, ThemeLabel };
+            pickers = new List<Picker>() { UnitPicker, ThemePicker };
             UpdateUI();
         }
         protected override void OnAppearing()
@@ -32,17 +38,40 @@ namespace WeatherBuddy
         private void UpdateUI()
         {
             isUpdating = true;
+
+            // Update colours
+            TitleFrame.BackgroundColor = Colours.GetColor("Accent");
+            TitleLabel.TextColor = Colours.GetColor("Title");
+            this.BackgroundColor = Colours.GetColor("Page");
+            foreach (Frame frame in frames)
+            {
+                frame.BackgroundColor = Colours.GetColor("ContentBg");
+                frame.BorderColor = Colours.GetColor("Accent");
+            }
+            foreach (Label label in labels)
+            {
+                label.TextColor = Colours.GetColor("Text");
+            }
+            foreach (Picker picker in pickers)
+            {
+                picker.TextColor = Colours.GetColor("Text");
+            }
+
+            // Update controls:
+
             // Units
             int unitPickerIndex = UnitPicker.Items.IndexOf(WeatherCollection.prefs.unitName);
             if (UnitPicker.SelectedIndex != unitPickerIndex)
             {
                 UnitPicker.SelectedIndex = unitPickerIndex;
             }
+
             // Dark mode
             if (DarkModeSwitch.IsToggled != WeatherCollection.prefs.darkMode)
             {
                 DarkModeSwitch.IsToggled = WeatherCollection.prefs.darkMode;
             }
+
             // Theme
             int themePickerItemIndex = ThemePicker.Items.IndexOf(WeatherCollection.prefs.theme);
             if (ThemePicker.SelectedIndex != themePickerItemIndex)

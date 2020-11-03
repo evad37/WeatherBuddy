@@ -27,8 +27,16 @@ namespace WeatherBuddy
         private async void UpdateWeatherAndUiAsync()
         {
             // Update colours
-            TitleFrame.BackgroundColor = Colours.GetColor("TitleBackground");
-            TitleLabel.TextColor = Colours.GetColor("TitleText");
+            TitleFrame.BackgroundColor = Colours.GetColor("Accent");
+            TitleLabel.TextColor = Colours.GetColor("Title");
+            this.BackgroundColor = Colours.GetColor("Page");
+            MainLocationFrame.BackgroundColor = Colours.GetColor("ContentBg");
+            MainLocationFrame.BorderColor = Colours.GetColor("Accent");
+            foreach (Label label in MainLocationStackLayout.Children)
+            {
+                label.TextColor = Colours.GetColor("Text");
+            }
+            NoLocationsLabel.TextColor = Colours.GetColor("Text");
             // Update each location
             await weatherCollection.LocationsLoaded;
             if (weatherCollection.favouriteLocation != null)

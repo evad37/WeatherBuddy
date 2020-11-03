@@ -38,6 +38,12 @@ namespace WeatherBuddy
         /// </summary>
         private void UpdateUI()
         {
+            // Update colours
+            TitleFrame.BackgroundColor = Colours.GetColor("Accent");
+            TitleLabel.TextColor = Colours.GetColor("Title");
+            this.BackgroundColor = Colours.GetColor("Page");
+            EditHelpTextLabel.TextColor = Colours.GetColor("Text");
+            // Update content
             LocationsStackLayout.Children.Clear();
             if (weatherCollection.locations.Count > 0)
             {
@@ -57,6 +63,7 @@ namespace WeatherBuddy
             {
                 Label noLocationsLabel = new Label();
                 noLocationsLabel.Text = "You don't yet have any locations in your collection.";
+                noLocationsLabel.TextColor = Colours.GetColor("Text");
                 LocationsStackLayout.Children.Add(noLocationsLabel);
             }
         }

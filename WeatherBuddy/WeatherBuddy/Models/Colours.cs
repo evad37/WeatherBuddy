@@ -11,60 +11,60 @@ namespace WeatherBuddy.Models
         private static Dictionary<string, Color> colours = new Dictionary<string, Color>()
         {
             // Sky theme
-            { "TitleBackground-Sky-Light", Color.FromHex("2196F3") },
-            { "TitleText-Sky-Light", Color.White },
-            { "HeadingText-Sky-Light", Color.Blue },
-            { "NormalText-Sky-Light", Color.DarkBlue },
-            { "BoxBorder-Sky-Light", Color.Blue },
+            { "Page-Sky-Light", Color.FromHex("E6F2F8") },
+            { "ContentBg-Sky-Light", Color.FromHex("F3F9FC") },
+            { "Accent-Sky-Light", Color.FromHex("2196F3") },
+            { "Title-Sky-Light", Color.White },
+            { "Text-Sky-Light", Color.FromHex("000711") },
 
             // Sky theme, dark
-            { "TitleBackground-Sky-Dark", Color.FromHex("2196F3") },
-            { "TitleText-Sky-Dark", Color.Black },
-            { "HeadingText-Sky-Dark", Color.FromHex("A8E1FF") },
-            { "NormalText-Sky-Dark", Color.FromHex("E5F8FF") },
-            { "BoxBorder-Sky-Dark", Color.LightBlue },
+            { "Page-Sky-Dark", Color.FromHex("1F2437") },
+            { "ContentBg-Sky-Dark", Color.FromHex("090B11") },
+            { "Accent-Sky-Dark", Color.FromHex("5985A5") },
+            { "Title-Sky-Dark", Color.Black },
+            { "Text-Sky-Dark", Color.FromHex("F2FCFF") },
 
             // Sun theme
-            { "TitleBackground-Sun-Light", Color.Gold },
-            { "TitleText-Sun-Light", Color.White },
-            { "HeadingText-Sun-Light", Color.Gold },
-            { "NormalText-Sun-Light", Color.DarkGoldenrod },
-            { "BoxBorder-Sun-Light", Color.Gold },
+            { "Page-Sun-Light", Color.FromHex("FDF2D0") },
+            { "ContentBg-Sun-Light", Color.FromHex("FEFBEF") },
+            { "Accent-Sun-Light", Color.FromHex("F9D461") },
+            { "Title-Sun-Light", Color.White },
+            { "Text-Sun-Light", Color.FromHex("4A3604") },
 
             // Sun theme, dark
-            { "TitleBackground-Sun-Dark", Color.Gold },
-            { "TitleText-Sun-Dark", Color.Black },
-            { "HeadingText-Sun-Dark", Color.LightGoldenrodYellow },
-            { "NormalText-Sun-Dark", Color.PaleGoldenrod },
-            { "BoxBorder-Sun-Dark", Color.LightGoldenrodYellow },
+            { "Page-Sun-Dark", Color.FromHex("8F6900") },
+            { "ContentBg-Sun-Dark", Color.FromHex("594100") },
+            { "Accent-Sun-Dark", Color.FromHex("D7AC05") },
+            { "Title-Sun-Dark", Color.Black },
+            { "Text-Sun-Dark", Color.FromHex("FEFBEF") },
 
             // Grass theme
-            { "TitleBackground-Grass-Light", Color.GreenYellow },
-            { "TitleText-Grass-Light", Color.White },
-            { "HeadingText-Grass-Light", Color.Green },
-            { "NormalText-Grass-Light", Color.DarkGreen },
-            { "BoxBorder-SunGrassLight", Color.Green },
+            { "Page-Grass-Light", Color.FromHex("D3F8E4") },
+            { "ContentBg-Grass-Light", Color.FromHex("F2FDF7") },
+            { "Accent-Grass-Light", Color.FromHex("25DD76") },
+            { "Title-Grass-Light", Color.White },
+            { "Text-Grass-Light", Color.FromHex("072815") },
 
             // Grass theme, dark
-            { "TitleBackground-Grass-Dark", Color.Green },
-            { "TitleText-Grass-Dark", Color.Black },
-            { "HeadingText-Grass-Dark", Color.LightGreen },
-            { "NormalText-Grass-Dark", Color.PaleGreen },
-            { "BoxBorder-Grass-Dark", Color.LightGreen },
+            { "Page-Grass-Dark", Color.FromHex("16470C") },
+            { "ContentBg-Grass-Dark", Color.FromHex("0D2B07") },
+            { "Accent-Grass-Dark", Color.FromHex("40992F") },
+            { "Title-Grass-Dark", Color.Black },
+            { "Text-Grass-Dark", Color.FromHex("F5FAF4") },
 
             // Moon theme
-            { "TitleBackground-Moon-Light", Color.Gray },
-            { "TitleText-Moon-Light", Color.White },
-            { "HeadingText-Moon-Light", Color.DarkGray },
-            { "NormalText-Moon-Light", Color.DarkSlateGray },
-            { "BoxBorder-Moon-Light", Color.DarkGray },
+            { "Page-Moon-Light", Color.FromHex("EAEAEA") },
+            { "ContentBg-Moon-Light", Color.FromHex("F3F3F3") },
+            { "Accent-Moon-Light", Color.FromHex("A0A0A0") },
+            { "Title-Moon-Light", Color.White },
+            { "Text-Moon-Light", Color.DarkSlateGray },
 
             // Moon theme, dark
-            { "TitleBackground-Moon-Dark", Color.Gray },
-            { "TitleText-Moon-Dark", Color.Black },
-            { "HeadingText-Moon-Dark", Color.LightGray },
-            { "NormalText-Moon-Dark", Color.LightSlateGray },
-            { "BoxBorder-Moon-Dark", Color.LightGray }
+            { "Page-Moon-Dark", Color.FromHex("121212") },
+            { "ContentBg-Moon-Dark", Color.FromHex("080808") },
+            { "Accent-Moon-Dark", Color.FromHex("7A7A7A") },
+            { "Title-Moon-Dark", Color.Black },
+            { "Text-Moon-Dark", Color.LightSlateGray },
         };
 
         public static Color GetColor(string type)
@@ -79,7 +79,7 @@ namespace WeatherBuddy.Models
                 return Color.DarkRed;
             } else
             {
-                return Color.LightSalmon;
+                return Color.Red;
             }
         }
     }

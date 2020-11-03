@@ -158,6 +158,13 @@ namespace WeatherBuddy
         /// </summary>
         private void UpdateUI()
         {
+            // Update colours
+            TitleFrame.BackgroundColor = Colours.GetColor("Accent");
+            TitleLabel.TextColor = Colours.GetColor("Title");
+            this.BackgroundColor = Colours.GetColor("Page");
+            FilterLabel.TextColor = Colours.GetColor("Text");
+            LocationFilterEntry.TextColor = Colours.GetColor("Text");
+
             // Activity indicator
             LocationsLoadingActivityIndicator.IsRunning = isLoading;
             LocationsLoadingActivityIndicator.IsVisible = isLoading;
@@ -171,6 +178,7 @@ namespace WeatherBuddy
                 var locationFrame_tap = new TapGestureRecognizer();
                 locationFrame_tap.Tapped += async (s, e) =>
                 {
+                    LocationFilterEntry.Unfocus();
                     weatherCollection.AddLocation(location);
                     bool finished = await DisplayAlert("Location added", $"{location.name} has been added!", "Finished", "Add another");
                     if (finished)
@@ -190,6 +198,7 @@ namespace WeatherBuddy
         private void BackButton_Clicked(object sender, EventArgs e) => CloseWindow();
         private async void CloseWindow()
         {
+            LocationFilterEntry.Unfocus();
             await Navigation.PopModalAsync();
             onClosing();
         }
