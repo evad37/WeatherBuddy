@@ -15,19 +15,22 @@ namespace WeatherBuddy
         private WeatherCollection weatherCollection;
         private Action onClosing;
         private AddLocationPage addLocationPage { get; set; }
+        bool isLandscapeOrientation = false;
+
         public LocationsPage(WeatherCollection weatherCollection, Action onClosing)
         {
             InitializeComponent();
             this.weatherCollection = weatherCollection;
             this.onClosing = onClosing;
             this.addLocationPage = new AddLocationPage(weatherCollection, UpdateUI);
-            UpdateUI();
+            //UpdateUI();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             UpdateUI();
+
         }
 
         /// <summary>
@@ -40,7 +43,7 @@ namespace WeatherBuddy
             {
                 foreach (Location location in weatherCollection.locations)
                 {
-                    Frame frame = Components.LocationWeather(location, weatherCollection.api);
+                    Frame frame = Components.LocationWeather(location, weatherCollection.api, isLandscapeOrientation);
                     var locationFrame_tap = new TapGestureRecognizer();
                     locationFrame_tap.Tapped += (s, e) =>
                     {
@@ -98,6 +101,30 @@ namespace WeatherBuddy
             );
             weatherCollection.EditLocation(selectedAction, location);
             UpdateUI();
+        }
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            bool isNowLandscapeOrientation = width > height;
+            bool orientationChanged = isLandscapeOrientation != isNowLandscapeOrientation;
+            isLandscapeOrientation = isNowLandscapeOrientation;
+            HorizontalViewBackButton.IsVisible = isLandscapeOrientation;
+            HorizontalViewNewLocationButton.IsVisible = isLandscapeOrientation;
+            VerticalViewBackButton.IsVisible = !isLandscapeOrientation;
+            VerticalViewNewLocationButton.IsVisible = !isLandscapeOrientation;
+            if (orientationChanged)
+            {
+                Device.BeginInvokeOnMainThread(UpdateUI);
+            }
+            //Task.Delay(100).ContinueWith(_ =>
+            //{
+            //    Device.BeginInvokeOnMainThread(UpdateUI);
+            //});
+            //if (hasLoadedLocations)
+            //{
+           //     // Recreate the locationWeather components with the correct oreintation
+           //     UpdateUI();
+            //} 
         }
     }
 }

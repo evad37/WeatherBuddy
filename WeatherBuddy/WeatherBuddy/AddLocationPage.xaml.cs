@@ -204,6 +204,13 @@ namespace WeatherBuddy
             locationFilter = filterText;
             UpdateUI();
         }
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            bool isLandscapeOrientation = width > height;
+            HorizontalViewBackButton.IsVisible = isLandscapeOrientation;
+            VerticalViewBackButton.IsVisible = !isLandscapeOrientation;
+        }
 
 
     }

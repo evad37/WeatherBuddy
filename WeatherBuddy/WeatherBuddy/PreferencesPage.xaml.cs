@@ -15,6 +15,7 @@ namespace WeatherBuddy
         private WeatherCollection weatherCollection;
         bool isUpdating = false;
         private Action onClosing;
+
         public PreferencesPage(WeatherCollection weatherCollection, Action onClosing)
         {
             InitializeComponent();
@@ -110,5 +111,14 @@ namespace WeatherBuddy
             WeatherCollection.prefs.SavePreferences();
         }
 
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            bool isLandscapeOrientation = width > height;
+            HorizontalViewBackButton.IsVisible = isLandscapeOrientation;
+            HorizontalViewResetButton.IsVisible = isLandscapeOrientation;
+            VerticalViewBackButton.IsVisible = !isLandscapeOrientation;
+            VerticalViewResetButton.IsVisible = !isLandscapeOrientation;
+        }
     }
 }

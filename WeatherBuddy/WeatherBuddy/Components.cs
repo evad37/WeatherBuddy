@@ -34,7 +34,7 @@ namespace WeatherBuddy
             return frame;
         }
 
-        public static Frame LocationWeather(Location location, Api api)
+        public static Frame LocationWeather(Location location, Api api, bool isLandscapeOrientation)
         {
             Label cityNameLabel = new Label();
             cityNameLabel.Text = location.name;
@@ -42,14 +42,15 @@ namespace WeatherBuddy
 
             Label conditionsLabel = new Label();
             conditionsLabel.Text = "----";
+            conditionsLabel.HorizontalOptions = isLandscapeOrientation ? LayoutOptions.EndAndExpand : LayoutOptions.Start;
 
             Label tempLabel = new Label();
             tempLabel.Text = "---";
             tempLabel.HorizontalOptions = LayoutOptions.End;
 
             StackLayout innerStackLayout = new StackLayout();
-            innerStackLayout.Orientation = StackOrientation.Vertical;
-            innerStackLayout.HorizontalOptions = LayoutOptions.StartAndExpand;
+            innerStackLayout.Orientation = isLandscapeOrientation ? StackOrientation.Horizontal : StackOrientation.Vertical;
+            innerStackLayout.HorizontalOptions = isLandscapeOrientation ? LayoutOptions.FillAndExpand : LayoutOptions.StartAndExpand;
             innerStackLayout.Children.Add(cityNameLabel);
             innerStackLayout.Children.Add(conditionsLabel);
 
@@ -76,6 +77,7 @@ namespace WeatherBuddy
             frame.BorderColor = Color.Beige;
             frame.Content = outerStackLayout;
             // Intentioanlly not awaited, the successHandler will execute when needed
+#pragma warning disable CS4014 // "Because this call is not awaited, execution of the current method continues before the call is completed"
             location.GetWeather(
                 api,
                 (temp, conditions) => {
@@ -87,6 +89,7 @@ namespace WeatherBuddy
                 },
                 (_errTitle, _errMessage) => {  }
             );
+#pragma warning restore CS4014
 
 
             return frame;

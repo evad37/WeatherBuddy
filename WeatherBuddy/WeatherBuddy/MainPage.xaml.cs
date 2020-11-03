@@ -81,5 +81,13 @@ namespace WeatherBuddy
         {
             await DisplayAlert(title, message, "OK");
         }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            bool isLandscapeOrientation = width > height;
+            MainLocationStackLayout.Orientation = isLandscapeOrientation ? StackOrientation.Horizontal : StackOrientation.Vertical;
+            PageButtonsStackLayout.Orientation = isLandscapeOrientation ? StackOrientation.Horizontal : StackOrientation.Vertical;
+        }
     }
 }
