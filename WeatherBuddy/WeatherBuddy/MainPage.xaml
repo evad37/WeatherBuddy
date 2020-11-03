@@ -2,30 +2,40 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherBuddy.MainPage">
-
     <StackLayout>
+        <!-- Title -->
         <Frame x:Name="TitleFrame" BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
             <Label x:Name="TitleLabel" Text="WeatherBuddy!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
+
+        <!-- Navigation buttons -->
         <StackLayout x:Name="PageButtonsStackLayout" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="4,4,4,10">
             <Button x:Name="LocationsButton" Text="My Locations" HorizontalOptions="FillAndExpand" Clicked="LocationsButton_Clicked"/>
             <Button x:Name="PreferencesButton" Text="Preferences" HorizontalOptions="FillAndExpand" Clicked="PreferencesButton_Clicked"/>
         </StackLayout>
+
+        <!-- Rest of main page, in a scroll view in case the device has a small screen -->
         <ScrollView>
             <StackLayout x:Name="LocationsStackLayout">
+
+                <!-- Main (favourite) location -->
                 <Frame x:Name="MainLocationFrame"  BorderColor="Beige" IsVisible="false">
                     <StackLayout x:Name="MainLocationStackLayout" Orientation="Vertical" Padding="0" Spacing="0" Margin="10,0,10,0">
-                        <!-- oreintation will change based on device orientation -->
                         <Label x:Name="MainLocationNameLabel" Text="Main Location Name" VerticalOptions="Center" FontSize="18" Margin="0" Padding="0"/>
                         <Label x:Name="MainLocationTempLabel" Text="00°C" FontSize="80" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="0" Padding="0"/>
                         <Label x:Name="MainLocationDescriptionLabel" Text="Mostly sunny" FontSize="16" VerticalOptions="Center" HorizontalOptions="Center" Margin="0" Padding="0"/>
                     </StackLayout>
                 </Frame>
+
+                <!-- Explanatory text when no location to display -->
                 <Label x:Name="NoLocationsLabel" Text="No locations in your collection. Got to 'My Locations' to add some" IsVisible="false"/>
+
+                <!-- Loading indicator -->
                 <ActivityIndicator x:Name="MainPageActivityIndicator" IsRunning="true" />
+
+                <!-- Button to reload data, hidden until needed -->
                 <Button x:Name="ReloadButton" Text="Reload data" IsVisible="false" Clicked="ReloadButton_Clicked"/>
             </StackLayout>
         </ScrollView>
     </StackLayout>
-
 </ContentPage>

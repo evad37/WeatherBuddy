@@ -1,33 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Add Location view -->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherBuddy.AddLocationPage">
     <ContentPage.Content>
         <StackLayout>
+            <!-- Title (and navigation button for horizontal view) -->
             <Frame x:Name="TitleFrame" BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
-                    <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/> <!-- Only shown for horizontal orientation -->
+                    <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/>
                     <Label x:Name="TitleLabel" Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </StackLayout>
             </Frame>
-           
-            <!-- Only shown for vertical orientation -->
+
+            <!-- Navigation button for vertical view -->
             <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Margin="10,4" Clicked="BackButton_Clicked"/>
+
+            <!-- Filter -->
             <Label x:Name="FilterLabel" Text="Filter" Margin="10,4,0,0"/>
             <Entry x:Name="LocationFilterEntry" Placeholder="Enter location" Margin="10,0,0,4" TextChanged="LocationFilterEntry_TextChanged"/>
+
             <ActivityIndicator x:Name="LocationsLoadingActivityIndicator" IsRunning="true" />
+
+            <!-- ScrollView allows results to be scrolled when too many to fit on page -->
             <ScrollView>
                 <StackLayout x:Name="FilterResultsStackLayout" Orientation="Vertical">
-                    <!-- sample of what the programatically created children should look like:
-                    
-                    <Frame BorderColor="Beige">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label Text="CityName~~~~~" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="State/Country~~~~~" HorizontalOptions="End"/>
-                        </StackLayout>
-                    </Frame>
-                    
-                     -->
+                    <!-- Children elements (filter results) will be programatically created -->
                 </StackLayout>
             </ScrollView>
         </StackLayout>

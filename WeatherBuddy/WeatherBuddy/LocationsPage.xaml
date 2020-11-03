@@ -3,36 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherBuddy.LocationsPage">
     <StackLayout>
+        <!-- Title (and navigation buttons for horizontal view) -->
         <Frame x:Name="TitleFrame" BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
-                <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/> <!-- Only shown for horizontal orientation -->
+                <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/>
                 <Label x:Name="TitleLabel" Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                <Button x:Name="HorizontalViewNewLocationButton" Text="New location" HorizontalOptions="End" IsVisible="False" Clicked="NewLocationButton_Clicked"/> <!-- Only shown for horizontal orientation -->
+                <Button x:Name="HorizontalViewNewLocationButton" Text="New location" HorizontalOptions="End" IsVisible="False" Clicked="NewLocationButton_Clicked"/>
             </StackLayout>
         </Frame>
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4"> <!-- Only shown for vertical orientation -->
+
+        <!-- Navigation buttons for vertical view -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4">
             <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Clicked="BackButton_Clicked"/>
             <Button x:Name="VerticalViewNewLocationButton" Text="New location" HorizontalOptions="EndAndExpand" Clicked="NewLocationButton_Clicked"/>
         </StackLayout>
+
+        <!-- Help text -->
         <Label x:Name="EditHelpTextLabel" Text="Tap a loction for edit options" Margin="4"/>
+
+        <!-- ScrollView allows locations to be scrolled when too many to fit on page -->
         <ScrollView VerticalOptions="StartAndExpand">
             <StackLayout x:Name="LocationsStackLayout">
-                <!-- Locations - will be added programmatically, with the following structure:
-                
-                <Frame BorderColor="Beige">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
-                            <Label Text="Location1Name" FontAttributes="Bold"/>
-                            <Label Text="Sunny"/>
-                        </StackLayout>
-                        <Label Text="00°C" HorizontalOptions="End"/>
-                    </StackLayout>
-                </Frame>
-                -->
+                <!-- Children elements (locations) will be programatically created -->
             </StackLayout>
         </ScrollView>
-        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="4,4,4,10">
-        </StackLayout>
     </StackLayout>
-
 </ContentPage>

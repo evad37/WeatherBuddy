@@ -4,19 +4,25 @@
              x:Class="WeatherBuddy.PreferencesPage">
     <ContentPage.Content>
         <StackLayout>
+            <!-- Title (and buttons for horizontal view) -->
             <Frame x:Name="TitleFrame" BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
-                    <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/> <!-- Only shown for horizontal orientation -->
+                    <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/>
                     <Label x:Name="TitleLabel" Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                    <Button x:Name="HorizontalViewResetButton" Text="Reset" HorizontalOptions="End" IsVisible="False" Clicked="ResetButton_Clicked"/> <!-- Only shown for horizontal orientation -->
+                    <Button x:Name="HorizontalViewResetButton" Text="Reset" HorizontalOptions="End" IsVisible="False" Clicked="ResetButton_Clicked"/>
                 </StackLayout>
             </Frame>
+
+            <!-- Buttons for vertical view -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4">
-                <!-- Only shown for vertical orientation -->
                 <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Clicked="BackButton_Clicked"/>
                 <Button x:Name="VerticalViewResetButton" Text="Reset" HorizontalOptions="EndAndExpand" Clicked="ResetButton_Clicked"/>
             </StackLayout>
+
+            <!-- Rest of page in scroll view, in case device display is too small -->
             <ScrollView>
+
+                <!-- Grid to neatly align preference controls -->
                 <Grid Margin="10,4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -29,10 +35,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <!-- Background frames to clearly delineate rows -->
                     <Frame x:Name="UnitsFrame" BorderColor="Beige" Grid.Row="0" Grid.ColumnSpan="3"/>
                     <Frame x:Name="DarkModeFrame" BorderColor="Beige" Grid.Row="1" Grid.ColumnSpan="3"/>
                     <Frame x:Name="ThemeFrame" BorderColor="Beige" Grid.Row="2" Grid.ColumnSpan="3"/>
 
+                    <!-- Units prefernce -->
                     <Label x:Name="UnitsLabel" Text="Units"  VerticalOptions="Center"/>
                     <Picker x:Name="UnitPicker" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndexChanged="UnitPicker_SelectedIndexChanged">
                         <Picker.ItemsSource>
@@ -44,9 +52,11 @@
                         </Picker.ItemsSource>
                     </Picker>
 
+                    <!-- Dark mode preference -->
                     <Label x:Name="DarkModeLabel" Grid.Row="1" Text="Dark mode"  VerticalOptions="Center"/>
                     <Switch x:Name="DarkModeSwitch" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Toggled="DarkModeSwitch_Toggled" />
 
+                    <!-- Theme prefernce -->
                     <Label x:Name="ThemeLabel" Grid.Row="2" Text="Theme"  VerticalOptions="Center"/>
                     <Picker x:Name="ThemePicker" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndexChanged="ThemePicker_SelectedIndexChanged">
                         <Picker.ItemsSource>

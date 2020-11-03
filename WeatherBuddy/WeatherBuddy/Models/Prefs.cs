@@ -73,5 +73,15 @@ namespace WeatherBuddy.Models
             darkMode = Preferences.Get(nameof(darkMode), darkMode);
             theme = Preferences.Get(nameof(theme), theme);
         }
+
+        /// <summary>
+        /// Resets the properties to their default values
+        /// </summary>
+        public void Reset()
+        {
+            unit = "C";
+            darkMode = false;
+            theme = "Sky";
+        }
     }
 }
