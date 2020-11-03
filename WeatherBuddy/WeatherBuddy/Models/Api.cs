@@ -6,6 +6,9 @@ using Xamarin.Essentials;
 
 namespace WeatherBuddy.Models
 {
+    /// <summary>
+    /// Class for making api requests, with caching to prevent unneccsary calls.
+    /// </summary>
     public class Api
     {  
         /// <summary>
@@ -29,7 +32,7 @@ namespace WeatherBuddy.Models
         /// Checks if a response has been cached for a currency code.
         /// </summary>
         /// <param name="baseCode">Currency code to check</param>
-        /// <returns></returns>
+        /// <returns>True if there is a cached response, false if not</returns>
         private bool IsCached(string baseCode) => cachedResponses.ContainsKey(baseCode);
 
         /// <summary>
@@ -56,6 +59,8 @@ namespace WeatherBuddy.Models
         /// </summary>
         /// <param name="cityId">City id code</param>
         /// <returns>Weather information as JSON string</returns>
+        /// <exception cref="NoInternetException"></exception>
+        /// <exception cref="BadResponseException"></exception>
         public virtual async Task<string> FetchData(string cityId)
         {
             // Return a cached response if available and valid

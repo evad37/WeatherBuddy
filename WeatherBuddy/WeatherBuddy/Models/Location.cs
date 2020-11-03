@@ -1,55 +1,58 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace WeatherBuddy.Models
 {
+    /// <summary>
+    /// Class representing a location and it's weather data.
+    /// </summary>
     public class Location
     {
         /// <summary>
         /// OpenWeatherMap ID
         /// </summary>
         public int id { get; set; }
+
         /// <summary>
         /// Name of location
         /// </summary>
         public string name { get; set; }
+
         /// <summary>
         /// 2-letter state code for location
         /// </summary>
         public string state { get; set; }
+
         /// <summary>
         /// 2-letter country code for location
         /// </summary>
         public string country { get; set; }
+
         /// <summary>
         /// Location is one of the user's favourites
         /// </summary>
         public bool isFavourite { get; set; } = false;
+
         /// <summary>
-        /// Location is the user's main location
-        /// </summary>
-        public bool isMain { get; set; } = false;
-        /// <summary>
-        /// Current tempurature in degrees Kelvin
+        /// Current temperature in degrees Kelvin
         /// </summary>
         /// 
         public double tempNow { get; private set; }
+
         /// <summary>
-        /// Description of current conditions
+        /// Short description of current conditions
         /// </summary>
         public string conditions { get; private set; }
+
         /// <summary>
-        /// Tuple of error message headring and body
+        /// Tuple of error message heading and body
         /// </summary>
         public (string, string) errorMessage = ("", "");
+
         /// <summary>
         /// Name of country if available, otherwise the country code
         /// </summary>
@@ -61,9 +64,10 @@ namespace WeatherBuddy.Models
                 {
                     return (new RegionInfo(country)).EnglishName;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    System.Diagnostics.Debug.WriteLine(e.Message);
+                    // RegionInfo couldn't get the name for the code, so just return
+                    // the code itself.
                     return country;
                 }
             }
@@ -71,23 +75,17 @@ namespace WeatherBuddy.Models
         /// <summary>
         /// The location's state and country, or just country, depending on whether state has a value
         /// </summary>
-        public string stateAndCountry
-        {
-            get => string.IsNullOrEmpty(state)
+        public string stateAndCountry => string.IsNullOrEmpty(state)
                 ? countryName
                 : string.Format("{0}, {1}", state, countryName);
-        }
-
-        public DateTime UpdatedAt { get; private set; }
-
 
         /// <summary>
-        /// Gets current weather for this location from the api  
+        /// Gets and parses current weather for this location from the api  
         /// </summary>
         /// <param name="api">Api object to use for request</param>
-        /// <param name="successHandler">Callback for success retrieving weather</param>
+        /// <param name="successHandler">Callback for success retrieving weather. Is passed </param>
         /// <param name="errorHandler">Callback for when there is an error retrieving weather</param>
-        /// <returns>Task completed</returns>
+        /// <returns>Task that is completed when weather has been retreived and parsed</returns>
         internal async Task GetWeather(Api api, Action<double, string> successHandler, Action<string, string> errorHandler)
         {
             try
@@ -101,9 +99,13 @@ namespace WeatherBuddy.Models
                 JArray responseWeatherArray = response.Value<JArray>("weather");
                 JObject responseWeather = (JObject)responseWeatherArray.First;
                 conditions = responseWeather.Value<string>("description");
+                // Pass temperature and conditions to a callback function, to prevent race condition on
+                // properties being accessed before they are actually updating.
                 successHandler(tempNow, conditions);
             }
-            catch (NoInternetException)
+            // Catch errors and pass a heading and message to a callback function, so the caller
+            // can decide what to do with the error.
+            catch (NoInternetException) // User doesn't have an internet connection
             {
                 errorHandler("No internet connection", "Please connect to the internet and try again.");
             }

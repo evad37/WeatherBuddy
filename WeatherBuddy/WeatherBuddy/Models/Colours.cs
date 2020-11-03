@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Xamarin.Forms;
-using System.Text;
-using System.Linq;
 
 namespace WeatherBuddy.Models
 {
+    /// <summary>
+    /// Class that defines colours for each theme, with and without dark mode enabled.
+    /// </summary>
     public static class Colours
     {
+        /// <summary>
+        /// Colour values keyed by `{type}-{theme}-{mode}`
+        /// </summary>
         private static Dictionary<string, Color> colours = new Dictionary<string, Color>()
         {
             // Sky theme
@@ -67,18 +70,28 @@ namespace WeatherBuddy.Models
             { "Text-Moon-Dark", Color.LightSlateGray },
         };
 
+        /// <summary>
+        /// Returns the colour for a type, based on current user preferences for theme and dark mode.
+        /// If colour value can not be determined, will return a red colour.
+        /// </summary>
+        /// <param name="type">Type of colour, e.g. "Accent"</param>
+        /// <returns>Colour for the  input type with current preferences</returns>
         public static Color GetColor(string type)
         {
             string mode = WeatherCollection.prefs.darkMode ? "Dark" : "Light";
             string key = $"{type}-{WeatherCollection.prefs.theme}-{mode}";
-            if (colours.ContainsKey(key)) {
+            if (colours.ContainsKey(key))
+            {
                 return colours[key];
             }
-            else if (type.Contains("Text"))
+            else if (type == "Text")
             {
+                // Default value for Text, if not in dictionary
                 return Color.DarkRed;
-            } else
+            }
+            else
             {
+                // Default value for other types, if not in dictionary
                 return Color.Red;
             }
         }

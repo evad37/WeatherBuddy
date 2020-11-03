@@ -4,6 +4,9 @@ using System.Text;
 
 namespace WeatherBuddy.Models
 {
+    /// <summary>
+    /// Utility functions
+    /// </summary>
     public static class Util
     {
         /// <summary>
@@ -12,7 +15,7 @@ namespace WeatherBuddy.Models
         /// </summary>
         /// <param name="degreesKelvin">Temperature in degrees Kelvin</param>
         /// <param name="unit">Symbol for unit to convert to</param>
-        /// <returns></returns>
+        /// <returns>Formatted temperature</returns>
         public static string FormatTemp(double degreesKelvin, string unit)
         {
             if (unit == "C")
@@ -37,23 +40,28 @@ namespace WeatherBuddy.Models
         /// </summary>
         /// <param name="degreesKelvin">Temperature in degrees Kelvin</param>
         /// <param name="unit">Symbol for unit to convert to</param>
-        /// <returns></returns>
+        /// <returns>Formatted temperature</returns>
         public static string FormatTempInteger(double degreesKelvin, string unit)
         {
             if (unit == "C")
             {
+                // Convert from Kelvin
                 double degreesCelcius = degreesKelvin - 273.15;
+                // Round to nearest int (midpoint rounding)
                 int degreesCelciusInt = (int)Math.Round(degreesCelcius, 0, MidpointRounding.AwayFromZero);
                 return $"{degreesCelciusInt}°C";
             }
             else if (unit == "F")
             {
+                // Convert from Kelvin
                 double degreesFahrenheit = (degreesKelvin - 273.15) * 9 / 5 + 32;
+                // Round to nearest int (midpoint rounding)
                 int degreesFahrenheitInt = (int)Math.Round(degreesFahrenheit, 0, MidpointRounding.AwayFromZero);
                 return $"{degreesFahrenheitInt}°F";
             }
             else // default to Kelvin
             {
+                // Round to nearest int (midpoint rounding)
                 int degreesKelvinInt = (int)Math.Round(degreesKelvin, 0, MidpointRounding.AwayFromZero);
                 return $"{degreesKelvinInt}°K";
             }
