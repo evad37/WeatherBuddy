@@ -91,7 +91,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\starwhite.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WeatherBuddy\WeatherBuddy.csproj">
       <Project>{6BA0B938-FA74-4DA3-9C57-9B5C12286701}</Project>

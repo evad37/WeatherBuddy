@@ -78,9 +78,12 @@ namespace WeatherBuddy
             if (location.isFavourite)
             {
                 Image favouriteImage = new Image();
-                favouriteImage.Source = Device.RuntimePlatform == Device.UWP
-                    ? "Images/star.png"
-                    : "star.png";
+                string filename = WeatherCollection.prefs.darkMode ? "starwhite.png" : "star.png";
+                if (Device.RuntimePlatform == Device.UWP)
+                {
+                    filename = "Images/" + filename;
+                }
+                favouriteImage.Source = filename;
                 favouriteImage.WidthRequest = 20;
                 favouriteImage.VerticalOptions = LayoutOptions.Start;
                 outerStackLayout.Children.Add(favouriteImage);
