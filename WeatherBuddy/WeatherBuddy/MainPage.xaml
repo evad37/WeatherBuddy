@@ -10,8 +10,8 @@
 
         <!-- Navigation buttons -->
         <StackLayout x:Name="PageButtonsStackLayout" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="4,4,4,10">
-            <Button x:Name="LocationsButton" Text="My Locations" HorizontalOptions="FillAndExpand" Clicked="LocationsButton_Clicked"/>
-            <Button x:Name="PreferencesButton" Text="Preferences" HorizontalOptions="FillAndExpand" Clicked="PreferencesButton_Clicked"/>
+            <Button x:Name="LocationsButton" Text="My Locations" HorizontalOptions="FillAndExpand" Clicked="LocationsButton_Clicked" BackgroundColor="#888888"/>
+            <Button x:Name="PreferencesButton" Text="Preferences" HorizontalOptions="FillAndExpand" Clicked="PreferencesButton_Clicked" BackgroundColor="#888888"/>
         </StackLayout>
 
         <!-- Rest of main page, in a scroll view in case the device has a small screen -->
@@ -34,7 +34,7 @@
                 <ActivityIndicator x:Name="MainPageActivityIndicator" IsRunning="true" />
 
                 <!-- Button to reload data, hidden until needed -->
-                <Button x:Name="ReloadButton" Text="Reload data" IsVisible="false" Clicked="ReloadButton_Clicked"/>
+                <Button x:Name="ReloadButton" Text="Reload data" IsVisible="false" Clicked="ReloadButton_Clicked" BackgroundColor="#888888"/>
             </StackLayout>
         </ScrollView>
     </StackLayout>

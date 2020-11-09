@@ -8,13 +8,13 @@
             <!-- Title (and navigation button for horizontal view) -->
             <Frame x:Name="TitleFrame" BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
-                    <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/>
+                    <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked" BackgroundColor="#888888"/>
                     <Label x:Name="TitleLabel" Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                 </StackLayout>
             </Frame>
 
             <!-- Navigation button for vertical view -->
-            <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Margin="10,4" Clicked="BackButton_Clicked"/>
+            <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Margin="10,4" Clicked="BackButton_Clicked" BackgroundColor="#888888"/>
 
             <!-- Filter -->
             <Label x:Name="FilterLabel" Text="Filter" Margin="10,4,0,0"/>

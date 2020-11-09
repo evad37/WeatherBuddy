@@ -20,6 +20,7 @@ namespace WeatherBuddy.Models
             { "Title-Sky-Light", Color.White },
             { "Text-Sky-Light", Color.FromHex("000711") },
 
+
             // Sky theme, dark
             { "Page-Sky-Dark", Color.FromHex("1F2437") },
             { "ContentBg-Sky-Dark", Color.FromHex("090B11") },
@@ -69,6 +70,22 @@ namespace WeatherBuddy.Models
             { "Title-Moon-Dark", Color.Black },
             { "Text-Moon-Dark", Color.LightSlateGray },
         };
+
+        // Button colours are the same for all themes
+        /// <summary>
+        /// Text colour for buttons
+        /// </summary>
+        public static Color ButtonText
+        {
+            get => WeatherCollection.prefs.darkMode ? Color.White : Color.Black;
+        }
+        /// <summary>
+        /// Background colour for buttons
+        /// </summary>
+        public static Color ButtonBackground
+        {
+            get => WeatherCollection.prefs.darkMode ? Color.FromHex("88595959") : Color.FromHex("88BBBBBB");
+        }
 
         /// <summary>
         /// Returns the colour for a type, based on current user preferences for theme and dark mode.

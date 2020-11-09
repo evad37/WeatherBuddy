@@ -164,6 +164,10 @@ namespace WeatherBuddy
             this.BackgroundColor = Colours.GetColor("Page");
             FilterLabel.TextColor = Colours.GetColor("Text");
             LocationFilterEntry.TextColor = Colours.GetColor("Text");
+            HorizontalViewBackButton.TextColor = Colours.ButtonText;
+            HorizontalViewBackButton.BackgroundColor = Colours.ButtonBackground;
+            VerticalViewBackButton.TextColor = Colours.ButtonText;
+            VerticalViewBackButton.BackgroundColor = Colours.ButtonBackground;
 
             // Activity indicator
             LocationsLoadingActivityIndicator.IsRunning = isLoading;

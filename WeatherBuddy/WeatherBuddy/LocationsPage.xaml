@@ -6,16 +6,16 @@
         <!-- Title (and navigation buttons for horizontal view) -->
         <Frame x:Name="TitleFrame" BackgroundColor="#2196F3" Padding="6" CornerRadius="0">
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4,4,4,10">
-                <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked"/>
+                <Button x:Name="HorizontalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" IsVisible="False" Clicked="BackButton_Clicked" BackgroundColor="#888888"/>
                 <Label x:Name="TitleLabel" Text="WeatherBuddy!" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                <Button x:Name="HorizontalViewNewLocationButton" Text="New location" HorizontalOptions="End" IsVisible="False" Clicked="NewLocationButton_Clicked"/>
+                <Button x:Name="HorizontalViewNewLocationButton" Text="New location" HorizontalOptions="End" IsVisible="False" Clicked="NewLocationButton_Clicked" BackgroundColor="#888888"/>
             </StackLayout>
         </Frame>
 
         <!-- Navigation buttons for vertical view -->
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="4">
-            <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Clicked="BackButton_Clicked"/>
-            <Button x:Name="VerticalViewNewLocationButton" Text="New location" HorizontalOptions="EndAndExpand" Clicked="NewLocationButton_Clicked"/>
+            <Button x:Name="VerticalViewBackButton" Text="&lt; Back" HorizontalOptions="Start" Clicked="BackButton_Clicked" BackgroundColor="#888888"/>
+            <Button x:Name="VerticalViewNewLocationButton" Text="New location" HorizontalOptions="EndAndExpand" Clicked="NewLocationButton_Clicked" BackgroundColor="#888888"/>
         </StackLayout>
 
         <!-- Help text -->

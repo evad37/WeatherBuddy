@@ -85,6 +85,14 @@ namespace WeatherBuddy
             {
                 picker.TextColor = Colours.GetColor("Text");
             }
+            HorizontalViewBackButton.TextColor = Colours.ButtonText;
+            HorizontalViewBackButton.BackgroundColor = Colours.ButtonBackground;
+            HorizontalViewResetButton.TextColor = Colours.ButtonText;
+            HorizontalViewResetButton.BackgroundColor = Colours.ButtonBackground;
+            VerticalViewBackButton.TextColor = Colours.ButtonText;
+            VerticalViewBackButton.BackgroundColor = Colours.ButtonBackground;
+            VerticalViewResetButton.TextColor = Colours.ButtonText;
+            VerticalViewResetButton.BackgroundColor = Colours.ButtonBackground;
 
             // Update controls:
 

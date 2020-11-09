@@ -53,6 +53,10 @@ namespace WeatherBuddy
                 label.TextColor = Colours.GetColor("Text");
             }
             NoLocationsLabel.TextColor = Colours.GetColor("Text");
+            LocationsButton.TextColor = Colours.ButtonText;
+            LocationsButton.BackgroundColor = Colours.ButtonBackground;
+            PreferencesButton.TextColor = Colours.ButtonText;
+            PreferencesButton.BackgroundColor = Colours.ButtonBackground;
 
             // Update favourite location
             await weatherCollection.LocationsLoaded;

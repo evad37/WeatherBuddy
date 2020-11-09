@@ -43,6 +43,7 @@ namespace WeatherBuddy
             this.weatherCollection = weatherCollection;
             this.onClosing = onClosing;
             this.addLocationPage = new AddLocationPage(weatherCollection, UpdateUI);
+            UpdateColours();
         }
 
         /// <summary>
@@ -55,15 +56,31 @@ namespace WeatherBuddy
         }
 
         /// <summary>
+        /// Updates the colours in the UI, based on the user preferences
+        /// </summary>
+        private void UpdateColours()
+        {
+            TitleFrame.BackgroundColor = Colours.GetColor("Accent");
+            TitleLabel.TextColor = Colours.GetColor("Title");
+            this.BackgroundColor = Colours.GetColor("Page");
+            EditHelpTextLabel.TextColor = Colours.GetColor("Text");
+            HorizontalViewBackButton.TextColor = Colours.ButtonText;
+            HorizontalViewBackButton.BackgroundColor = Colours.ButtonBackground;
+            HorizontalViewNewLocationButton.TextColor = Colours.ButtonText;
+            HorizontalViewNewLocationButton.BackgroundColor = Colours.ButtonBackground;
+            VerticalViewBackButton.TextColor = Colours.ButtonText;
+            VerticalViewBackButton.BackgroundColor = Colours.ButtonBackground;
+            VerticalViewNewLocationButton.TextColor = Colours.ButtonText;
+            VerticalViewNewLocationButton.BackgroundColor = Colours.ButtonBackground;
+        }
+
+        /// <summary>
         /// Updates the UI based on the current state of the model
         /// </summary>
         private void UpdateUI()
         {
             // Update colours
-            TitleFrame.BackgroundColor = Colours.GetColor("Accent");
-            TitleLabel.TextColor = Colours.GetColor("Title");
-            this.BackgroundColor = Colours.GetColor("Page");
-            EditHelpTextLabel.TextColor = Colours.GetColor("Text");
+            UpdateColours();
 
             // Update content
             LocationsStackLayout.Children.Clear(); // Remove all existing components in the stack
