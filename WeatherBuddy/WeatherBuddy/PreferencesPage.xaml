@@ -41,8 +41,8 @@
                     <Frame x:Name="ThemeFrame" BorderColor="Beige" Grid.Row="2" Grid.ColumnSpan="3"/>
 
                     <!-- Units prefernce -->
-                    <Label x:Name="UnitsLabel" Text="Units"  VerticalOptions="Center"/>
-                    <Picker x:Name="UnitPicker" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndexChanged="UnitPicker_SelectedIndexChanged">
+                    <Label x:Name="UnitsLabel" Text="Units"  VerticalOptions="Center" Margin="8"/>
+                    <Picker x:Name="UnitPicker" Grid.Column="1" Grid.ColumnSpan="2" Margin="8" SelectedIndexChanged="UnitPicker_SelectedIndexChanged">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Celcius</x:String>
@@ -53,12 +53,12 @@
                     </Picker>
 
                     <!-- Dark mode preference -->
-                    <Label x:Name="DarkModeLabel" Grid.Row="1" Text="Dark mode"  VerticalOptions="Center"/>
-                    <Switch x:Name="DarkModeSwitch" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Toggled="DarkModeSwitch_Toggled" />
+                    <Label x:Name="DarkModeLabel" Grid.Row="1" Text="Dark mode" Margin="8"  VerticalOptions="Center"/>
+                    <Switch x:Name="DarkModeSwitch" Grid.Row="1" Grid.Column="1" Margin="8" Grid.ColumnSpan="2" Toggled="DarkModeSwitch_Toggled" />
 
                     <!-- Theme prefernce -->
-                    <Label x:Name="ThemeLabel" Grid.Row="2" Text="Theme"  VerticalOptions="Center"/>
-                    <Picker x:Name="ThemePicker" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndexChanged="ThemePicker_SelectedIndexChanged">
+                    <Label x:Name="ThemeLabel" Grid.Row="2" Text="Theme" Margin="8"  VerticalOptions="Center"/>
+                    <Picker x:Name="ThemePicker" Grid.Row="2" Grid.Column="1" Margin="8" Grid.ColumnSpan="2" SelectedIndexChanged="ThemePicker_SelectedIndexChanged">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Sky</x:String>
