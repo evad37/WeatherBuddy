@@ -18,6 +18,9 @@
             <Button x:Name="VerticalViewNewLocationButton" Text="New location" HorizontalOptions="EndAndExpand" Clicked="NewLocationButton_Clicked" BackgroundColor="#888888"/>
         </StackLayout>
 
+        <!-- Button to reload data, hidden until needed -->
+        <Button x:Name="ReloadButton" Text="Reload data" IsVisible="false" Clicked="ReloadButton_Clicked" BackgroundColor="#888888"/>
+
         <!-- Help text -->
         <Label x:Name="EditHelpTextLabel" Text="Tap a loction for edit options" Margin="4"/>
 

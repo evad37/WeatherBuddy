@@ -72,6 +72,8 @@ namespace WeatherBuddy
             VerticalViewBackButton.BackgroundColor = Colours.ButtonBackground;
             VerticalViewNewLocationButton.TextColor = Colours.ButtonText;
             VerticalViewNewLocationButton.BackgroundColor = Colours.ButtonBackground;
+            ReloadButton.TextColor = Colours.ButtonText;
+            ReloadButton.BackgroundColor = Colours.ButtonBackground;
         }
 
         /// <summary>
@@ -89,7 +91,12 @@ namespace WeatherBuddy
                 // Add each location as a LocationWeather component
                 foreach (Location location in weatherCollection.locations)
                 {
-                    Frame frame = Components.LocationWeather(location, weatherCollection.api, isLandscapeOrientation);
+                    Frame frame = Components.LocationWeather(
+                        location,
+                        weatherCollection.api,
+                        isLandscapeOrientation,
+                        HandleApiError
+                    );
                     // Add a tap event handler that will show editing options
                     var locationFrame_tap = new TapGestureRecognizer();
                     locationFrame_tap.Tapped += (s, e) =>
@@ -201,6 +208,35 @@ namespace WeatherBuddy
                 // Programatticaly generated elements will need updating. And it
                 // needs to be on the main thread because the UI will be modified.
                 Device.BeginInvokeOnMainThread(UpdateUI);
+            }
+        }
+
+        /// <summary>
+        /// Handles "Reload data" button clicks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReloadButton_Clicked(object sender, EventArgs e)
+        {
+            // Hide the button while data loads 
+            ReloadButton.IsVisible = false;
+            // Update the weather data (and the UI, based on that)
+            UpdateUI();
+        }
+
+        /// <summary>
+        /// Handles any API errors. Only allows a single error message to be displayed at a time,
+        /// to prevent flooding the user with the same error message (e.g. when no internet conection)
+        /// </summary>
+        /// <param name="errorTitle"></param>
+        /// <param name="errorMessage"></param>
+        private async void HandleApiError(string errorTitle, string errorMessage)
+        {
+            // Only show a popup if not already shown to user, i.e. reload button not already visible
+            if (!ReloadButton.IsVisible)
+            {
+                ReloadButton.IsVisible = true;
+                await DisplayAlert(errorTitle, errorMessage, "OK");
             }
         }
     }

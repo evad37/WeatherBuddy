@@ -1,4 +1,5 @@
-﻿using WeatherBuddy.Models;
+﻿using System;
+using WeatherBuddy.Models;
 using Xamarin.Forms;
 
 namespace WeatherBuddy
@@ -47,8 +48,9 @@ namespace WeatherBuddy
         /// <param name="location">Location to be displayed</param>
         /// <param name="api">API object for retreiving weather information</param>
         /// <param name="isLandscapeOrientation">Format for landscape viwing instead of portrait veiwing</param>
+        /// <param name="onApiError">Function to handle for Api error</param>
         /// <returns>Frame containing location's weather</returns>
-        public static Frame LocationWeather(Location location, Api api, bool isLandscapeOrientation)
+        public static Frame LocationWeather(Location location, Api api, bool isLandscapeOrientation, Action<string,string> onApiError)
         {
             Label cityNameLabel = new Label();
             cityNameLabel.Text = location.name;
@@ -113,11 +115,8 @@ namespace WeatherBuddy
                         conditionsLabel.Text = conditions;
                     });
                 },
-                // Ignore errors, to avaoid flooding the user with many popups/warnings (potenitally
-                // one for each location in there collection, which could be very large).
-                // The error state will be noticeable as labels will just be dashes, and
-                // will be explictly stated if/when they return to the main page.
-                (_errTitle, _errMessage) => { }
+                // Error callback
+                onApiError
             );
 #pragma warning restore CS4014 // End of supressing "call is not awaited" warning
 

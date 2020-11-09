@@ -57,6 +57,8 @@ namespace WeatherBuddy
             LocationsButton.BackgroundColor = Colours.ButtonBackground;
             PreferencesButton.TextColor = Colours.ButtonText;
             PreferencesButton.BackgroundColor = Colours.ButtonBackground;
+            ReloadButton.TextColor = Colours.ButtonText;
+            ReloadButton.BackgroundColor = Colours.ButtonBackground;
 
             // Update favourite location
             await weatherCollection.LocationsLoaded;
